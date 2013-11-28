@@ -2,32 +2,18 @@
 #define __GAME_HPP__
 
 
-#include <vector>
 #include <memory>
-#include <string>
-#include "StateRenderer.hpp"
-#include "GameState.hpp"
+#include "GameUi.hpp"
 
 
-typedef std::unique_ptr<StateRenderer> pRenderer_t;
-
+typedef std::unique_ptr<GameUi> pGameUi_t;
 
 class Game {
   public:
-    Game();
-    void launch();
+    void launch(int argc, char** argv);
 
   private:
-    void populateWordList();
-    void gameLoop();
-    void processInput(char c);
-    void draw();
-    void success();
-    void endGame();
-
-    std::vector<std::string> m_words;
-    GameState m_state;
-    pRenderer_t m_renderer;
+    pGameUi_t m_ui;
 };
 
 

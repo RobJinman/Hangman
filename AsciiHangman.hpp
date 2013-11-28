@@ -28,9 +28,9 @@ class AsciiHangman {
     void drawState10(AsciiDisplay& display) const;
     void drawState11(AsciiDisplay& display) const;
 
+    Hangman m_hangman;
     int m_x;
     int m_y;
-    Hangman m_hangman;
 };
 
 

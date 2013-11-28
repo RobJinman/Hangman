@@ -36,7 +36,7 @@ void AsciiDisplay::putChar(char c, int x, int y) {
 // AsciiDisplay::putChars
 //===========================================
 void AsciiDisplay::putChars(const std::string& str, int x, int y) {
-  for (int i = 0; i < str.length(); ++i) {
+  for (int i = 0; i < static_cast<int>(str.length()); ++i) {
     if (x + i >= m_w) break;
 
     putChar(str.data()[i], x + i, y);

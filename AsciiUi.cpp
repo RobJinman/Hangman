@@ -1,18 +1,50 @@
-#include "AsciiRenderer.hpp"
+#include <iostream>
+#include "AsciiUi.hpp"
 #include "AsciiHangman.hpp"
 #include "GameState.hpp"
 
 
+using namespace std;
+
+
 //===========================================
-// AsciiRenderer::AsciiRenderer
+// AsciiUi::AsciiUi
 //===========================================
-AsciiRenderer::AsciiRenderer()
+AsciiUi::AsciiUi()
   : m_display(40, 13) {}
 
 //===========================================
-// AsciiRenderer::draw
+// AsciiUi::start
 //===========================================
-void AsciiRenderer::draw(const GameState& state) const {
+void AsciiUi::start() {
+  m_logic.start();
+  draw();
+
+  ioLoop();
+}
+
+//===========================================
+// AsciiUi::ioLoop
+//===========================================
+void AsciiUi::ioLoop() {
+  bool done = false;
+
+  while (!done) {
+    char c;
+    cin >> c;
+
+    done = m_logic.processInput(c);
+
+    draw();
+  }
+}
+
+//===========================================
+// AsciiUi::draw
+//===========================================
+void AsciiUi::draw() const {
+  const GameState& state = m_logic.getState();
+
   m_display.clear(' ');
 
   m_display.putChars("|--------------------------------------|", 0, 0);
