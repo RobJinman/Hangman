@@ -15,20 +15,7 @@ using namespace std;
 //===========================================
 // GameLogic::GameLogic
 //===========================================
-GameLogic::GameLogic() {
-
-}
-
-//===========================================
-// GameLogic::populateWordList
-//===========================================
-void GameLogic::populateWordList() {
-  m_words.push_back("pumpkin");
-  m_words.push_back("susan boyle");
-  m_words.push_back("lemon pie");
-  m_words.push_back("dinosaur");
-  m_words.push_back("frenchman");
-}
+GameLogic::GameLogic() {}
 
 //===========================================
 // GameLogic::processInput
@@ -46,8 +33,8 @@ bool GameLogic::processInput(char c) {
   bool b = false;
 
   for (int i = 0; i < m_state.phraseLen; ++i) {
-    if (c == m_state.word[i]) {
-      m_state.guess[i] = c;
+    if (tolower(c) == tolower(m_state.word[i])) {
+      m_state.guess[i] = m_state.word[i];
       ++m_state.nCorrect;
 
       b = true;
@@ -72,20 +59,19 @@ bool GameLogic::processInput(char c) {
 //===========================================
 // GameLogic::start
 //===========================================
-void GameLogic::start() {
+void GameLogic::start(pWordList_t words) {
+  m_words = move(words);
   m_state.nCorrect = 0;
 
   memset(m_state.word, 0, GameState::WORD_SIZE_MAX);
   memset(m_state.guess, 0, GameState::WORD_SIZE_MAX);
 
-  populateWordList();
-
   for (char c = 'a'; c <= 'z'; ++c)
     m_state.availableLetters.insert(c);
 
   srand(time(NULL));
-  int r = rand() % m_words.size();
-  const string& w = m_words[r];
+  int r = rand() % m_words->size();
+  const string& w = (*m_words)[r];
   int l = w.length();
 
   int nSpaces = 0;
