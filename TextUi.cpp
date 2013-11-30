@@ -18,7 +18,7 @@ using namespace std;
 // TextUi::TextUi
 //===========================================
 TextUi::TextUi(int argc, char** argv)
-  : m_display(40, 13) {
+  : m_display(40, 14) {
 
   m_opts.language = "english";
   for (int i = 0; i < argc; ++i) {
@@ -38,61 +38,66 @@ void TextUi::start() {
 
   fetchCategories();
 
-  m_display.clear(' ');
+  bool done = false;
+  while (!done) {
+    m_logic->reset();
 
-  m_display.putChars("|--------------------------------------|", 0, 0);
-  m_display.putChars("|                                      |", 0, 1);
-  m_display.putChars("|--------------------------------------|", 0, 2);
-  m_display.putChars("|                                      |", 0, 3);
-  m_display.putChars("|                                      |", 0, 4);
-  m_display.putChars("|                                      |", 0, 5);
-  m_display.putChars("|                                      |", 0, 6);
-  m_display.putChars("|                                      |", 0, 7);
-  m_display.putChars("|                                      |", 0, 8);
-  m_display.putChars("|                                      |", 0, 9);
-  m_display.putChars("|                                      |", 0, 10);
-  m_display.putChars("|                                      |", 0, 11);
-  m_display.putChars("|--------------------------------------|", 0, 12);
+    m_display.clear(' ');
 
-  utf8string_t title = state.strings.getValue("title");
-  m_display.putChars(title, 2, 1);
+    m_display.putChars("|--------------------------------------|", 0, 0);
+    m_display.putChars("|                                      |", 0, 1);
+    m_display.putChars("|--------------------------------------|", 0, 2);
+    m_display.putChars("|                                      |", 0, 3);
+    m_display.putChars("|                                      |", 0, 4);
+    m_display.putChars("|                                      |", 0, 5);
+    m_display.putChars("|                                      |", 0, 6);
+    m_display.putChars("|                                      |", 0, 7);
+    m_display.putChars("|                                      |", 0, 8);
+    m_display.putChars("|                                      |", 0, 9);
+    m_display.putChars("|                                      |", 0, 10);
+    m_display.putChars("|                                      |", 0, 11);
+    m_display.putChars("|--------------------------------------|", 0, 12);
 
-  utf8string_t cat = state.strings.getValue("categorysub");
-  m_display.putChars(cat, 2, 3);
+    utf8string_t title = state.strings.getValue("title");
+    m_display.putChars(title, 2, 1);
 
-  int i = 0;
-  vector<utf8string_t> categories;
-  for (auto c = m_categories.begin(); c != m_categories.end(); ++c) {
-    stringstream ss;
-    ss << i << ": " << c->first;
+    utf8string_t cat = state.strings.getValue("categorysub");
+    m_display.putChars(cat, 2, 3);
 
-    m_display.putChars(ss.str(), 2, 5 + i);
+    int i = 0;
+    vector<utf8string_t> categories;
+    for (auto c = m_categories.begin(); c != m_categories.end(); ++c) {
+      stringstream ss;
+      ss << i << ": " << c->first;
 
-    categories.push_back(c->first);
+      m_display.putChars(ss.str(), 2, 5 + i);
 
-    ++i;
-  }
+      categories.push_back(c->first);
 
-  m_display.flush();
-
-  unsigned int c = 255;
-  while (1) {
-    cin >> c;
-    if (c < categories.size()) break;
-
-    utf8string_t badcat = state.strings.getValue("badcategory");
-    m_display.putChars(badcat, 2, 11);
+      ++i;
+    }
 
     m_display.flush();
+
+    unsigned int c = 255;
+    while (1) {
+      cin >> c;
+      if (c < categories.size()) break;
+
+      utf8string_t badcat = state.strings.getValue("badcategory");
+      m_display.putChars(badcat, 2, 11);
+
+      m_display.flush();
+    }
+
+    pWordList_t words(new wordList_t);
+    fetchWords(categories[c], m_alphabet, *words);
+
+    m_logic->start(m_alphabet, move(words));
+    draw();
+
+    done = ioLoop();
   }
-
-  pWordList_t words(new wordList_t);
-  fetchWords(categories[c], m_alphabet, *words);
-
-  m_logic->start(m_alphabet, move(words));
-  draw();
-
-  ioLoop();
 }
 
 //===========================================
@@ -119,7 +124,9 @@ void TextUi::fetchWords(const utf8string_t& cat, ucs4string_t& alphabet, wordLis
 
   while (!fin.eof()) {
     fin.getline(buf, 512);
-    words.push_back(utf8string_t(buf));
+
+    if (!fin.eof())
+      words.push_back(utf8string_t(buf));
   }
 
   fin.close();
@@ -140,7 +147,9 @@ void TextUi::fetchCategories() {
 //===========================================
 // TextUi::ioLoop
 //===========================================
-void TextUi::ioLoop() {
+bool TextUi::ioLoop() {
+  const GameState& state = m_logic->getState();
+
   bool done = false;
 
   while (!done) {
@@ -155,6 +164,22 @@ void TextUi::ioLoop() {
 
     draw();
   }
+
+  utf8string_t strReplay = state.strings.getValue("replayprompt");
+  m_display.putChars(strReplay, 0, 13);
+
+  m_display.flush();
+
+  utf8string_t y = state.strings.getValue("yeskey");
+
+  char buf[8];
+  memset(buf, 0, 8);
+
+  cin.getline(buf, 8, '\n');
+
+  utf8string_t ans(buf);
+
+  return ans.compare(y) != 0;
 }
 
 //===========================================

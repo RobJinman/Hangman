@@ -20,7 +20,7 @@ class TextUi : public GameUi {
   private:
     void fetchCategories();
     void fetchWords(const utf8string_t& cat, ucs4string_t& alphabet, wordList_t& words) const;
-    void ioLoop();
+    bool ioLoop();
     void draw() const;
 
     ucs4string_t m_alphabet;

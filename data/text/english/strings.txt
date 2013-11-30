@@ -4,3 +4,5 @@ success = Success!
 failure = Failed
 letterrepeat = Letter already used
 badcategory = No such category
+replayprompt = Play again? (enter 'y')
+yeskey = y

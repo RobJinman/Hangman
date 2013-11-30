@@ -2,6 +2,9 @@
 #include "Strings.hpp"
 
 
+//===========================================
+// ucs4ToUtf8
+//===========================================
 utf8string_t ucs4ToUtf8(const ucs4string_t& ucs) {
   utf8string_t utf;
 
@@ -38,6 +41,9 @@ utf8string_t ucs4ToUtf8(const ucs4string_t& ucs) {
   return utf;
 }
 
+//===========================================
+// utf8ToUcs4
+//===========================================
 ucs4string_t utf8ToUcs4(const utf8string_t& utf) {
   ucs4string_t ucs;
 

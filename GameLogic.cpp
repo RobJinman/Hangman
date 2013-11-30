@@ -135,3 +135,17 @@ void GameLogic::endGame() {
   m_state.guess = m_state.word;
   m_state.message = m_state.strings.getValue("failure");
 }
+
+//===========================================
+// GameLogic::reset
+//===========================================
+void GameLogic::reset() {
+  m_state.availableLetters.clear();
+  m_state.hangman = Hangman();
+  m_state.word.clear();
+  m_state.guess.clear();
+  m_state.wordLen = 0;
+  m_state.phraseLen = 0;
+  m_state.nCorrect = 0;
+  m_state.message = "";
+}

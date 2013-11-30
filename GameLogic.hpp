@@ -24,6 +24,7 @@ class GameLogic {
 
     void start(const ucs4string_t& alphabet, pWordList_t words);
     bool processInput(const utf8string_t& chars);
+    void reset();
     inline const GameState& getState() const;
 
   private:
