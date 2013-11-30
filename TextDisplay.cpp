@@ -1,6 +1,6 @@
 #include <stdexcept>
 #include <iostream>
-#include "AsciiDisplay.hpp"
+#include "TextDisplay.hpp"
 
 
 #define ERROR(msg) throw std::runtime_error(msg);
@@ -10,22 +10,22 @@ using namespace std;
 
 
 //===========================================
-// AsciiDisplay::AsciiDisplay
+// TextDisplay::TextDisplay
 //===========================================
-AsciiDisplay::AsciiDisplay(int w, int h) {
+TextDisplay::TextDisplay(int w, int h) {
   m_w = w;
   m_h = h;
 
-  m_pixels = new char*[w];
+  m_pixels = new uint32_t*[w];
 
   for (int i = 0; i < w; ++i)
-    m_pixels[i] = new char[h];
+    m_pixels[i] = new uint32_t[h];
 }
 
 //===========================================
-// AsciiDisplay::putChar
+// TextDisplay::putChar
 //===========================================
-void AsciiDisplay::putChar(char c, int x, int y) {
+void TextDisplay::putChar(uint32_t c, int x, int y) {
   if (x >= m_w || y >= m_h)
     ERROR("Error putting char; Coords out of range");
 
@@ -33,32 +33,37 @@ void AsciiDisplay::putChar(char c, int x, int y) {
 }
 
 //===========================================
-// AsciiDisplay::putChars
+// TextDisplay::putChars
 //===========================================
-void AsciiDisplay::putChars(const std::string& str, int x, int y) {
-  for (int i = 0; i < static_cast<int>(str.length()); ++i) {
+void TextDisplay::putChars(const utf8string_t& str, int x, int y) {
+  ucs4string_t ucs = utf8ToUcs4(str);
+
+  for (int i = 0; i < static_cast<int>(ucs.length()); ++i) {
     if (x + i >= m_w) break;
 
-    putChar(str.data()[i], x + i, y);
+    putChar(ucs.data()[i], x + i, y);
   }
 }
 
 //===========================================
-// AsciiDisplay::flush
+// TextDisplay::flush
 //===========================================
-void AsciiDisplay::flush() {
+void TextDisplay::flush() {
   for (int j = 0; j < m_h; ++j) {
     for (int i = 0; i < m_w; ++i) {
-      cout << m_pixels[i][j];
+      ucs4string_t ucs(&m_pixels[i][j], 1);
+      utf8string_t utf = ucs4ToUtf8(ucs);
+
+      cout << utf;
     }
     cout << "\n";
   }
 }
 
 //===========================================
-// AsciiDisplay::clear
+// TextDisplay::clear
 //===========================================
-void AsciiDisplay::clear(char c) {
+void TextDisplay::clear(uint32_t c) {
   for (int j = 0; j < m_h; ++j) {
     for (int i = 0; i < m_w; ++i) {
       m_pixels[i][j] = c;

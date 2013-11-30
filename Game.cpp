@@ -1,7 +1,7 @@
 #include <cstring>
 #include <stdexcept>
 #include "Game.hpp"
-#include "AsciiUi.hpp"
+#include "TextUi.hpp"
 //#include "QtUi.hpp"
 
 
@@ -21,8 +21,8 @@ void Game::launch(int argc, char** argv) {
   }
 
   switch (uiType) {
-    case ASCII: m_ui = pGameUi_t(new AsciiUi); break;
-//    case QT:    m_ui = pGameUi_t(new QtUi);    break;
+    case ASCII: m_ui = pGameUi_t(new TextUi(argc, argv)); break;
+//    case QT:    m_ui = pGameUi_t(new QtUi(argc, argv));    break;
     default:    ERROR("Error constructing game UI; No such UI type");
   }
 

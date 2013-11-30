@@ -4,8 +4,9 @@
 
 #include <set>
 #include <memory>
-#include <string>
+#include "Strings.hpp"
 #include "Hangman.hpp"
+#include "KvpParser.hpp"
 
 
 // Should contain everything the renderer needs to know
@@ -14,15 +15,17 @@ class GameState {
   public:
     static const int WORD_SIZE_MAX = 64;
 
-    std::set<char> availableLetters;
+    KvpParser strings;
+
+    std::set<uint32_t> availableLetters;
 
     Hangman hangman;
-    char word[WORD_SIZE_MAX];
-    char guess[WORD_SIZE_MAX];
+    ucs4string_t word;
+    ucs4string_t guess;
     int wordLen;
     int phraseLen; // includes spaces
     int nCorrect;
-    std::string message;
+    utf8string_t message;
 };
 
 

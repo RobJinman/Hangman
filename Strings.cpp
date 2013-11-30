@@ -2,9 +2,6 @@
 #include "Strings.hpp"
 
 
-using namespace std;
-
-
 utf8string_t ucs4ToUtf8(const ucs4string_t& ucs) {
   utf8string_t utf;
 

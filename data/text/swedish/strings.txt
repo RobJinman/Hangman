@@ -1,0 +1,5 @@
+title = HANG MAN
+categorysub = Välj en kategori
+success = Framgång!
+failure = Misslyckades
+letterrepeat = Brev som redan använts

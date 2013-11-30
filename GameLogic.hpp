@@ -4,30 +4,35 @@
 
 #include <vector>
 #include <memory>
-#include <string>
 #include <map>
 #include "GameState.hpp"
 
 
-typedef std::vector<std::string> wordList_t;
+typedef std::vector<utf8string_t> wordList_t;
 typedef std::unique_ptr<wordList_t> pWordList_t;
+
+
+class GameSettings {
+  public:
+    utf8string_t language;
+};
 
 
 class GameLogic {
   public:
-    GameLogic();
+    GameLogic(const GameSettings& opts);
 
-    void start(pWordList_t words);
-    bool processInput(char c);
+    void start(const ucs4string_t& alphabet, pWordList_t words);
+    bool processInput(const utf8string_t& chars);
     inline const GameState& getState() const;
 
   private:
-    void populateWordLists();
     void success();
     void endGame();
+    void loadStrings();
 
+    GameSettings m_opts;
     pWordList_t m_words;
-
     GameState m_state;
 };
 

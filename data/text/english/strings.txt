@@ -1,0 +1,6 @@
+title = HANG MAN
+categorysub = Select a category
+success = Success!
+failure = Failed
+letterrepeat = Letter already used
+badcategory = No such category
