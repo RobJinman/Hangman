@@ -3,3 +3,6 @@ categorysub = Välj en kategori
 success = Framgång!
 failure = Misslyckades
 letterrepeat = Brev som redan använts
+badcategory = Ingen sådan kategori
+replayprompt = Spela igen? (skriva in 'j')
+yeskey = j

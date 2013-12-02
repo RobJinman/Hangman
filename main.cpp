@@ -12,7 +12,7 @@ using namespace std;
 int main(int argc, char** argv) {
   try {
     Game game;
-    game.launch(argc, argv);
+    return game.launch(argc, argv);
   }
   catch (runtime_error& e) {
     cerr << "Encountered fatal error; " << e.what() << "\n";
@@ -22,6 +22,4 @@ int main(int argc, char** argv) {
     cerr << "Encountered fatal error; Cause unknown\n";
     return EXIT_FAILURE;
   }
-
-  return EXIT_SUCCESS;
 }

@@ -6,7 +6,6 @@
 #include <memory>
 #include "Strings.hpp"
 #include "Hangman.hpp"
-#include "KvpParser.hpp"
 
 
 // Should contain everything the renderer needs to know
@@ -18,6 +17,9 @@ class GameState {
     KvpParser strings;
 
     std::set<uint32_t> availableLetters;
+
+    ucs4string_t alphabet;
+    std::vector<utf8string_t> categories;
 
     Hangman hangman;
     ucs4string_t word;

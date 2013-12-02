@@ -4,7 +4,7 @@
 
 class GameUi {
   public:
-    virtual void start() = 0;
+    virtual int start() = 0;
     virtual ~GameUi() {}
 };
 

@@ -1,2 +1,4 @@
 *.o
 hangman
+moc_*
+Makefile

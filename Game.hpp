@@ -10,7 +10,7 @@ typedef std::unique_ptr<GameUi> pGameUi_t;
 
 class Game {
   public:
-    void launch(int argc, char** argv);
+    int launch(int argc, char** argv);
 
   private:
     pGameUi_t m_ui;

@@ -5,6 +5,7 @@
 #include <vector>
 #include <memory>
 #include <map>
+#include "KvpParser.hpp"
 #include "GameState.hpp"
 
 
@@ -22,7 +23,7 @@ class GameLogic {
   public:
     GameLogic(const GameSettings& opts);
 
-    void start(const ucs4string_t& alphabet, pWordList_t words);
+    void start(const utf8string_t& category);
     bool processInput(const utf8string_t& chars);
     void reset();
     inline const GameState& getState() const;
@@ -31,7 +32,10 @@ class GameLogic {
     void success();
     void endGame();
     void loadStrings();
+    void fetchCategories();
+    void fetchWords(const utf8string_t& cat);
 
+    KvpParser m_categories;
     GameSettings m_opts;
     pWordList_t m_words;
     GameState m_state;

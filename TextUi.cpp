@@ -1,6 +1,5 @@
 #include <iostream>
 #include <sstream>
-#include <fstream>
 #include <stdexcept>
 #include <cstring>
 #include "TextUi.hpp"
@@ -20,23 +19,23 @@ using namespace std;
 TextUi::TextUi(int argc, char** argv)
   : m_display(40, 14) {
 
-  m_opts.language = "english";
+  GameSettings opts;
+
+  opts.language = "english";
   for (int i = 0; i < argc; ++i) {
-    if (strncmp("-lang=", argv[i], 5) == 0) {
-      m_opts.language = utf8string_t(&argv[i][6]);
+    if (strncmp("-lang=", argv[i], 6) == 0) {
+      opts.language = utf8string_t(&argv[i][6]);
     }
   }
 
-  m_logic = std::unique_ptr<GameLogic>(new GameLogic(m_opts));
+  m_logic = std::unique_ptr<GameLogic>(new GameLogic(opts));
 }
 
 //===========================================
 // TextUi::start
 //===========================================
-void TextUi::start() {
+int TextUi::start() {
   const GameState& state = m_logic->getState();
-
-  fetchCategories();
 
   bool done = false;
   while (!done) {
@@ -64,17 +63,12 @@ void TextUi::start() {
     utf8string_t cat = state.strings.getValue("categorysub");
     m_display.putChars(cat, 2, 3);
 
-    int i = 0;
-    vector<utf8string_t> categories;
-    for (auto c = m_categories.begin(); c != m_categories.end(); ++c) {
+    const vector<utf8string_t>& categories = state.categories;
+    for (unsigned int i = 0; i < categories.size(); ++i) {
       stringstream ss;
-      ss << i << ": " << c->first;
+      ss << i << ": " << categories[i];
 
       m_display.putChars(ss.str(), 2, 5 + i);
-
-      categories.push_back(c->first);
-
-      ++i;
     }
 
     m_display.flush();
@@ -90,58 +84,13 @@ void TextUi::start() {
       m_display.flush();
     }
 
-    pWordList_t words(new wordList_t);
-    fetchWords(categories[c], m_alphabet, *words);
-
-    m_logic->start(m_alphabet, move(words));
+    m_logic->start(categories[c]);
     draw();
 
     done = ioLoop();
   }
-}
 
-//===========================================
-// TextUi::fetchWords
-//===========================================
-void TextUi::fetchWords(const utf8string_t& cat, ucs4string_t& alphabet, wordList_t& words) const {
-  utf8string_t file = m_categories.getValue(cat);
-
-  stringstream ss;
-  ss << "./data/text/" << m_opts.language << "/wordlists/" << file;
-
-  ifstream fin(ss.str());
-  if (!fin.good()) {
-    fin.close();
-    ERROR("Error loading word list; File not found");
-  }
-
-  char buf[512];
-  memset(buf, 0, 512);
-
-  fin.getline(buf, 512);
-  utf8string_t utfAlpha(buf);
-  alphabet = utf8ToUcs4(utfAlpha);
-
-  while (!fin.eof()) {
-    fin.getline(buf, 512);
-
-    if (!fin.eof())
-      words.push_back(utf8string_t(buf));
-  }
-
-  fin.close();
-}
-
-//===========================================
-// TextUi::fetchCategories
-//===========================================
-void TextUi::fetchCategories() {
-  stringstream ss;
-  ss << "./data/text/" + m_opts.language + "/wordlists/index.txt";
-
-  utf8string_t path(ss.str());
-
-  m_categories.parseFile(path);
+  return EXIT_SUCCESS;
 }
 
 //===========================================
@@ -216,14 +165,14 @@ void TextUi::draw() const {
   TextHangman hangman(state.hangman, 3, 3);
   hangman.draw(m_display);
 
-  for (unsigned int c = 0; c < m_alphabet.length(); ++c) {
+  for (unsigned int c = 0; c < state.alphabet.length(); ++c) {
     int x = 23;
     int y = 4;
 
     int i = x + ((c * 2) % 10);
     int j = y + c / 5;
 
-    uint32_t l = m_alphabet[c];
+    uint32_t l = state.alphabet[c];
 
     if (state.availableLetters.find(l) != state.availableLetters.end()) {
       ucs4string_t ucs(&l, 1);

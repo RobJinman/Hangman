@@ -2,6 +2,8 @@
 #include <stdexcept>
 #include <ctime>
 #include <sstream>
+#include <fstream>
+#include <cstring>
 #include "GameLogic.hpp"
 
 
@@ -18,6 +20,7 @@ GameLogic::GameLogic(const GameSettings& opts) {
   m_opts = opts;
 
   loadStrings();
+  fetchCategories();
 }
 
 //===========================================
@@ -47,7 +50,7 @@ bool GameLogic::processInput(const utf8string_t& chars) {
     if (m_state.availableLetters.find(c) == m_state.availableLetters.end()) {
       m_state.message = m_state.strings.getValue("letterrepeat");
 
-      break;
+      continue;
     }
 
     m_state.availableLetters.erase(c);
@@ -84,12 +87,13 @@ bool GameLogic::processInput(const utf8string_t& chars) {
 //===========================================
 // GameLogic::start
 //===========================================
-void GameLogic::start(const ucs4string_t& alphabet, pWordList_t words) {
-  m_words = move(words);
+void GameLogic::start(const utf8string_t& category) {
+  fetchWords(category);
+
   m_state.nCorrect = 0;
 
-  for (unsigned int i = 0; i < alphabet.length(); ++i)
-    m_state.availableLetters.insert(alphabet[i]);
+  for (unsigned int i = 0; i < m_state.alphabet.length(); ++i)
+    m_state.availableLetters.insert(m_state.alphabet[i]);
 
   srand(time(NULL));
   int r = rand() % m_words->size();
@@ -119,6 +123,56 @@ void GameLogic::start(const ucs4string_t& alphabet, pWordList_t words) {
   m_state.wordLen = l - nSpaces;
 
   m_state.word = w;
+}
+
+//===========================================
+// GameLogic::fetchWords
+//===========================================
+void GameLogic::fetchWords(const utf8string_t& cat) {
+  utf8string_t file = m_categories.getValue(cat);
+
+  stringstream ss;
+  ss << "./data/text/" << m_opts.language << "/wordlists/" << file;
+
+  ifstream fin(ss.str());
+  if (!fin.good()) {
+    fin.close();
+    ERROR("Error loading word list; File not found");
+  }
+
+  char buf[512];
+  memset(buf, 0, 512);
+
+  fin.getline(buf, 512);
+  utf8string_t utfAlpha(buf);
+  m_state.alphabet = utf8ToUcs4(utfAlpha);
+
+  m_words = pWordList_t(new wordList_t);
+
+  while (!fin.eof()) {
+    fin.getline(buf, 512);
+
+    if (!fin.eof())
+      m_words->push_back(utf8string_t(buf));
+  }
+
+  fin.close();
+}
+
+//===========================================
+// GameLogic::fetchCategories
+//===========================================
+void GameLogic::fetchCategories() {
+  stringstream ss;
+  ss << "./data/text/" + m_opts.language + "/wordlists/index.txt";
+
+  utf8string_t path(ss.str());
+
+  m_categories.parseFile(path);
+
+  for (auto c = m_categories.begin(); c != m_categories.end(); ++c) {
+    m_state.categories.push_back(c->first);
+  }
 }
 
 //===========================================
