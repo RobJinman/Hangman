@@ -73,10 +73,20 @@ int TextUi::start() {
 
     m_display.flush();
 
-    unsigned int c = 255;
+    stringstream ss;
+    char buf[64];
+    unsigned int c = 999;
     while (1) {
-      cin >> c;
-      if (c < categories.size()) break;
+      memset(buf, 0, 64);
+
+      cin.getline(buf, 64, '\n');
+      ss.str("");
+      ss.clear();
+
+      ss << buf;
+      ss >> c;
+
+      if (!ss.fail() && c < categories.size()) break;
 
       utf8string_t badcat = state.strings.getValue("badcategory");
       m_display.putChars(badcat, 2, 11);

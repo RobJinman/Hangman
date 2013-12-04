@@ -23,6 +23,7 @@ class GameLogic {
   public:
     GameLogic(const GameSettings& opts);
 
+    void setSettings(const GameSettings& opts);
     void start(const utf8string_t& category);
     bool processInput(const utf8string_t& chars);
     void reset();

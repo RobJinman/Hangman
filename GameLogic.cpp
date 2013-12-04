@@ -17,6 +17,15 @@ using namespace std;
 // GameLogic::GameLogic
 //===========================================
 GameLogic::GameLogic(const GameSettings& opts) {
+  setSettings(opts);
+}
+
+//===========================================
+// GameLogic::setSettings
+//===========================================
+void GameLogic::setSettings(const GameSettings& opts) {
+  m_state = GameState();
+
   m_opts = opts;
 
   loadStrings();

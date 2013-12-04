@@ -1,5 +1,6 @@
 #include <cstring>
 #include <QApplication>
+#include <QTextCodec>
 #include "QtUi.hpp"
 #include "QtGameWindow.hpp"
 
@@ -13,6 +14,8 @@ using namespace std;
 QtUi::QtUi(int argc, char** argv) {
   m_argc = argc;
   m_argv = argv;
+
+  QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 }
 
 //===========================================

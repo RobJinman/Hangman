@@ -17,6 +17,8 @@ HEADERS += Game.hpp \
            Hangman.hpp \
            KvpParser.hpp \
            QtGameWindow.hpp \
+           QtGuess.hpp \
+           QtHangman.hpp \
            QtUi.hpp \
            Strings.hpp \
            TextDisplay.hpp \
@@ -28,6 +30,8 @@ SOURCES += Game.cpp \
            KvpParser.cpp \
            main.cpp \
            QtGameWindow.cpp \
+           QtGuess.cpp \
+           QtHangman.cpp \
            QtUi.cpp \
            Strings.cpp \
            TextDisplay.cpp \

@@ -15,11 +15,11 @@ enum UiType_t { TEXT, QT };
 // Game::Launch
 //===========================================
 int Game::launch(int argc, char** argv) {
-  UiType_t uiType = TEXT;
+  UiType_t uiType = QT;
 
   for (int i = 0; i < argc; ++i) {
     if (strncmp("-ui=", argv[i], 4) == 0) {
-      if (strcmp(&argv[i][4], "qt") == 0) uiType = QT;
+      if (strcmp(&argv[i][4], "text") == 0) uiType = TEXT;
     }
   }
 
