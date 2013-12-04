@@ -15,6 +15,7 @@
 class QMenu;
 class QAction;
 class QActionGroup;
+class QtLetters;
 
 typedef QMenu* pQMenu_t;
 typedef QAction* pQAction_t;
@@ -40,7 +41,6 @@ class QtGameWindow : public QMainWindow {
   private:
     enum gameState_t { ST_IDLE, ST_STARTED };
 
-    void paintEvent(QPaintEvent* event);
     void getLanguages();
 
     gameState_t m_gameState;
@@ -60,10 +60,7 @@ class QtGameWindow : public QMainWindow {
     pQActionGroup_t m_actGrpLanguages;
     pQPushButton_t m_btnNew;
     pQWidget_t m_wgtCentral;
-    pQWidget_t m_wgtLetters;
-    std::vector<pQPushButton_t> m_letters;
-    pQButtonGroup_t m_grpLetters;
-
+    QtLetters* m_wgtLetters;
     QtHangman* m_wgtHangman;
     QtGuess* m_wgtGuess;
 };

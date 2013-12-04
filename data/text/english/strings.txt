@@ -1,4 +1,4 @@
-title = HANG MAN
+title = Hangman
 categorysub = Select a category
 success = Success!
 failure = Failed
@@ -6,3 +6,9 @@ letterrepeat = Letter already used
 badcategory = No such category
 replayprompt = Play again? (enter 'y')
 yeskey = y
+newgame = &New Game
+category = &Category
+game = &Game
+new = &New
+quit = &Quit
+language = &Language

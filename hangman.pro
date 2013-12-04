@@ -19,6 +19,7 @@ HEADERS += Game.hpp \
            QtGameWindow.hpp \
            QtGuess.hpp \
            QtHangman.hpp \
+           QtLetters.hpp \
            QtUi.hpp \
            Strings.hpp \
            TextDisplay.hpp \
@@ -32,6 +33,7 @@ SOURCES += Game.cpp \
            QtGameWindow.cpp \
            QtGuess.cpp \
            QtHangman.cpp \
+           QtLetters.cpp \
            QtUi.cpp \
            Strings.cpp \
            TextDisplay.cpp \

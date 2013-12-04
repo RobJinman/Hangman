@@ -18,6 +18,11 @@ QtHangman::QtHangman(QWidget* parent)
   setAutoFillBackground(true);
 
   m_font = unique_ptr<QFont>(new QFont("Courier", 15, QFont::DemiBold));
+
+  m_x = 20;
+  m_y = 20;
+  m_w = 100;
+  m_h = 100;
 }
 
 //===========================================
@@ -34,6 +39,16 @@ void QtHangman::update(const Hangman& hangman, const utf8string_t& message) {
 void QtHangman::paintEvent(QPaintEvent* event) {
   QPainter painter(this);
   painter.setFont(*m_font);
+
+  Qt::PenStyle style = Qt::PenStyle(Qt::SolidLine);
+  Qt::PenCapStyle cap = Qt::PenCapStyle(Qt::FlatCap);
+  Qt::PenJoinStyle join = Qt::PenJoinStyle(Qt::RoundJoin);
+
+  QPen pen(Qt::blue, 2, style, cap, join);
+  QBrush brush(Qt::green);
+
+  painter.setPen(pen);
+  painter.setBrush(brush);
 
   switch (m_hangman.getState()) {
     case 0: drawState0(painter); break;
@@ -58,7 +73,7 @@ void QtHangman::paintEvent(QPaintEvent* event) {
 // QtHangman::drawMessage
 //===========================================
 void QtHangman::drawMessage(QPainter& painter) {
-  painter.drawText(20, 80, m_message.data());
+  painter.drawText(m_x, m_y + m_h + 32, m_message.data());
 }
 
 //===========================================
@@ -71,7 +86,6 @@ void QtHangman::drawMessage(QPainter& painter) {
 // |                |
 // |                |
 void QtHangman::drawState0(QPainter& painter) {
-  painter.drawText(20, 20, "X");
 }
 
 // |                |
@@ -82,8 +96,9 @@ void QtHangman::drawState0(QPainter& painter) {
 // |  |             |
 void QtHangman::drawState1(QPainter& painter) {
   drawState0(painter);
+  painter.setRenderHint(QPainter::Antialiasing, true);
 
-  painter.drawText(40, 20, "X");
+  painter.drawLine(QPoint(m_x, m_y), QPoint(m_x, m_y + m_h));
 }
 
 // |                |
@@ -95,7 +110,8 @@ void QtHangman::drawState1(QPainter& painter) {
 void QtHangman::drawState2(QPainter& painter) {
   drawState1(painter);
 
-  painter.drawText(60, 20, "X");
+  int w = m_w * 0.1;
+  painter.drawLine(QPoint(m_x - w, m_y + m_h), QPoint(m_x + w, m_y + m_h));
 }
 
 // |   ________     |
@@ -107,7 +123,8 @@ void QtHangman::drawState2(QPainter& painter) {
 void QtHangman::drawState3(QPainter& painter) {
   drawState2(painter);
 
-  painter.drawText(80, 20, "X");
+  int w = m_w * 0.8;
+  painter.drawLine(QPoint(m_x, m_y), QPoint(m_x + w, m_y));
 }
 
 // |   ________     |
@@ -119,7 +136,9 @@ void QtHangman::drawState3(QPainter& painter) {
 void QtHangman::drawState4(QPainter& painter) {
   drawState3(painter);
 
-  painter.drawText(100, 20, "X");
+  int w = m_w * 0.2;
+  int h = m_h * 0.2;
+  painter.drawLine(QPoint(m_x, m_y + h), QPoint(m_x + w, m_y));
 }
 
 // |   ________     |
@@ -131,7 +150,9 @@ void QtHangman::drawState4(QPainter& painter) {
 void QtHangman::drawState5(QPainter& painter) {
   drawState4(painter);
 
-  painter.drawText(120, 20, "X");
+  int w = m_w * 0.8;
+  int h = m_h * 0.2;
+  painter.drawLine(QPoint(m_x + w, m_y), QPoint(m_x + w, m_y + h));
 }
 
 // |   ________     |
@@ -143,7 +164,14 @@ void QtHangman::drawState5(QPainter& painter) {
 void QtHangman::drawState6(QPainter& painter) {
   drawState5(painter);
 
-  painter.drawText(140, 20, "X");
+  int w = m_w * 0.15;
+  int h = m_h * 0.15;
+  int x = m_x + m_w * 0.8 - w / 2;
+  int y = m_y + m_h * 0.2;
+
+  QRect rect(x, y, w, h);
+
+  painter.drawEllipse(rect);
 }
 
 // |   ________     |
@@ -155,7 +183,10 @@ void QtHangman::drawState6(QPainter& painter) {
 void QtHangman::drawState7(QPainter& painter) {
   drawState6(painter);
 
-  painter.drawText(160, 20, "X");
+  int x = m_x + m_w * 0.8;
+  int y = m_y + m_h * 0.35;
+  int h = m_h * 0.2;
+  painter.drawLine(QPoint(x, y), QPoint(x, y + h));
 }
 
 // |   ________     |
@@ -167,7 +198,11 @@ void QtHangman::drawState7(QPainter& painter) {
 void QtHangman::drawState8(QPainter& painter) {
   drawState7(painter);
 
-  painter.drawText(180, 20, "X");
+  int x1 = m_x + m_w * 0.8;
+  int y1 = m_y + m_h * 0.35;
+  int x2 = x1 - m_w * 0.1;
+  int y2 = y1 + m_h * 0.2;
+  painter.drawLine(QPoint(x1, y1), QPoint(x2, y2));
 }
 
 // |   ________     |
@@ -179,7 +214,11 @@ void QtHangman::drawState8(QPainter& painter) {
 void QtHangman::drawState9(QPainter& painter) {
   drawState8(painter);
 
-  painter.drawText(200, 20, "X");
+  int x1 = m_x + m_w * 0.8;
+  int y1 = m_y + m_h * 0.35;
+  int x2 = x1 + m_w * 0.1;
+  int y2 = y1 + m_h * 0.2;
+  painter.drawLine(QPoint(x1, y1), QPoint(x2, y2));
 }
 
 // |   ________     |
@@ -191,7 +230,11 @@ void QtHangman::drawState9(QPainter& painter) {
 void QtHangman::drawState10(QPainter& painter) {
   drawState9(painter);
 
-  painter.drawText(220, 20, "X");
+  int x1 = m_x + m_w * 0.8;
+  int y1 = m_y + m_h * 0.55;
+  int x2 = x1 - m_w * 0.1;
+  int y2 = y1 + m_h * 0.2;
+  painter.drawLine(QPoint(x1, y1), QPoint(x2, y2));
 }
 
 // |   ________     |
@@ -203,6 +246,10 @@ void QtHangman::drawState10(QPainter& painter) {
 void QtHangman::drawState11(QPainter& painter) {
   drawState10(painter);
 
-  painter.drawText(240, 20, "X");
+  int x1 = m_x + m_w * 0.8;
+  int y1 = m_y + m_h * 0.55;
+  int x2 = x1 + m_w * 0.1;
+  int y2 = y1 + m_h * 0.2;
+  painter.drawLine(QPoint(x1, y1), QPoint(x2, y2));
 }
 //===========================================

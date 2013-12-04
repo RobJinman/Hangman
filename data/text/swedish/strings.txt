@@ -1,4 +1,4 @@
-title = HANG MAN
+title = Hangman
 categorysub = Välj en kategori
 success = Framgång!
 failure = Misslyckades
@@ -6,3 +6,9 @@ letterrepeat = Brev som redan använts
 badcategory = Ingen sådan kategori
 replayprompt = Spela igen? (skriva in 'j')
 yeskey = j
+newgame = &Nytt Spel
+category = &Kategori
+game = &Spel
+new = &Ny
+quit = &Quit
+language = &Språk

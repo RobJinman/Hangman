@@ -41,6 +41,11 @@ class QtHangman : public QWidget {
     utf8string_t m_message;
 
     std::unique_ptr<QFont> m_font;
+
+    float m_x;
+    float m_y;
+    float m_w;
+    float m_h;
 };
 
 
