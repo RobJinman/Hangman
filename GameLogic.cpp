@@ -177,6 +177,7 @@ void GameLogic::fetchCategories() {
 
   utf8string_t path(ss.str());
 
+  m_categories.clear();
   m_categories.parseFile(path);
 
   for (auto c = m_categories.begin(); c != m_categories.end(); ++c) {

@@ -41,11 +41,11 @@ void QtHangman::paintEvent(QPaintEvent* event) {
   painter.setFont(*m_font);
 
   Qt::PenStyle style = Qt::PenStyle(Qt::SolidLine);
-  Qt::PenCapStyle cap = Qt::PenCapStyle(Qt::FlatCap);
+  Qt::PenCapStyle cap = Qt::PenCapStyle(Qt::SquareCap);
   Qt::PenJoinStyle join = Qt::PenJoinStyle(Qt::RoundJoin);
 
-  QPen pen(Qt::blue, 2, style, cap, join);
-  QBrush brush(Qt::green);
+  QPen pen(Qt::black, 2, style, cap, join);
+  QBrush brush(Qt::transparent);
 
   painter.setPen(pen);
   painter.setBrush(brush);
@@ -199,9 +199,9 @@ void QtHangman::drawState8(QPainter& painter) {
   drawState7(painter);
 
   int x1 = m_x + m_w * 0.8;
-  int y1 = m_y + m_h * 0.35;
+  int y1 = m_y + m_h * 0.37;
   int x2 = x1 - m_w * 0.1;
-  int y2 = y1 + m_h * 0.2;
+  int y2 = y1 + m_h * 0.16;
   painter.drawLine(QPoint(x1, y1), QPoint(x2, y2));
 }
 
@@ -215,9 +215,9 @@ void QtHangman::drawState9(QPainter& painter) {
   drawState8(painter);
 
   int x1 = m_x + m_w * 0.8;
-  int y1 = m_y + m_h * 0.35;
+  int y1 = m_y + m_h * 0.37;
   int x2 = x1 + m_w * 0.1;
-  int y2 = y1 + m_h * 0.2;
+  int y2 = y1 + m_h * 0.16;
   painter.drawLine(QPoint(x1, y1), QPoint(x2, y2));
 }
 

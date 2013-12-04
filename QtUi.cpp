@@ -24,7 +24,7 @@ QtUi::QtUi(int argc, char** argv) {
 int QtUi::start() {
   GameSettings opts;
 
-  opts.language = "english";
+  opts.language = "English";
   for (int i = 0; i < m_argc; ++i) {
     if (strncmp("-lang=", m_argv[i], 6) == 0) {
       opts.language = utf8string_t(&m_argv[i][6]);

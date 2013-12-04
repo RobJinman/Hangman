@@ -1,2 +1,2 @@
-english
-swedish
+English
+Svenska

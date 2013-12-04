@@ -21,7 +21,7 @@ TextUi::TextUi(int argc, char** argv)
 
   GameSettings opts;
 
-  opts.language = "english";
+  opts.language = "English";
   for (int i = 0; i < argc; ++i) {
     if (strncmp("-lang=", argv[i], 6) == 0) {
       opts.language = utf8string_t(&argv[i][6]);

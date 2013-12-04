@@ -42,6 +42,7 @@ class QtGameWindow : public QMainWindow {
     enum gameState_t { ST_IDLE, ST_STARTED };
 
     void getLanguages();
+    void remakeUi();
 
     gameState_t m_gameState;
     std::unique_ptr<GameLogic> m_logic;

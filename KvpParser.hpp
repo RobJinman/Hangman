@@ -18,6 +18,8 @@ class KvpParser {
     inline iterator begin() const;
     inline iterator end() const;
 
+    inline void clear();
+
   private:
     std::map<utf8string_t, utf8string_t> m_data;
     utf8string_t getLine(std::ifstream& fin) const;
@@ -29,6 +31,10 @@ inline KvpParser::iterator KvpParser::begin() const {
 
 inline KvpParser::iterator KvpParser::end() const {
   return m_data.end();
+}
+
+inline void KvpParser::clear() {
+  m_data.clear();
 }
 
 

@@ -25,7 +25,7 @@ QtGameWindow::QtGameWindow(const GameSettings& opts, QWidget* parent)
 
   getLanguages();
 
-  resize(400, 300);
+  resize(600, 300);
 
   m_logic = std::unique_ptr<GameLogic>(new GameLogic(opts));
   const GameState& state = m_logic->getState();
@@ -34,45 +34,26 @@ QtGameWindow::QtGameWindow(const GameSettings& opts, QWidget* parent)
   m_logic->start(state.categories[m_category]);
   m_gameState = ST_STARTED;
 
-  utf8string_t strTitle = state.strings.getValue("title");
-  utf8string_t strGame = state.strings.getValue("game");
-  utf8string_t strNew = state.strings.getValue("new");
-  utf8string_t strQuit = state.strings.getValue("quit");
-  utf8string_t strCategory = state.strings.getValue("category");
-  utf8string_t strLanguage = state.strings.getValue("language");
-  utf8string_t strNewGame = state.strings.getValue("newgame");
+  m_actNew = pQAction_t(new QAction("", this));
+  m_actQuit = pQAction_t(new QAction("", this));
 
-  setWindowTitle(strTitle.data());
-
-  m_actNew = pQAction_t(new QAction(strNew.data(), this));
-  m_actQuit = pQAction_t(new QAction(strQuit.data(), this));
-
-  m_mnuGame = pQMenu_t(menuBar()->addMenu(strGame.data()));
+  m_mnuGame = pQMenu_t(menuBar()->addMenu(""));
   m_mnuGame->addAction(m_actNew);
   m_mnuGame->addAction(m_actQuit);
 
   m_actGrpCategories = pQActionGroup_t(new QActionGroup(this));
-  m_mnuCategory = pQMenu_t(menuBar()->addMenu(strCategory.data()));
-
-  const vector<utf8string_t>& categories = state.categories;
-  for (unsigned int i = 0; i < categories.size(); ++i) {
-
-    pQAction_t cat(new QAction(categories[i].data(), this));
-    cat->setActionGroup(m_actGrpCategories);
-    cat->setCheckable(true);
-
-    m_mnuCategory->addAction(cat);
-
-    m_actCategories.push_back(std::move(cat));
-  }
+  m_mnuCategory = pQMenu_t(menuBar()->addMenu(""));
 
   m_actGrpLanguages = pQActionGroup_t(new QActionGroup(this));
-  m_mnuLanguage = pQMenu_t(menuBar()->addMenu(strLanguage.data()));
+  m_mnuLanguage = pQMenu_t(menuBar()->addMenu(""));
 
   for (unsigned int i = 0; i < m_languages.size(); ++i) {
     pQAction_t lang(new QAction(m_languages[i].data(), this));
     lang->setActionGroup(m_actGrpLanguages);
     lang->setCheckable(true);
+
+    if (m_languages[i].compare(opts.language) == 0)
+      lang->setChecked(true);
 
     m_mnuLanguage->addAction(lang);
 
@@ -84,42 +65,25 @@ QtGameWindow::QtGameWindow(const GameSettings& opts, QWidget* parent)
 
   QHBoxLayout* hbox = new QHBoxLayout;
 
-  QSizePolicy left(QSizePolicy::Preferred, QSizePolicy::Preferred);
-  left.setHorizontalStretch(2);
-
-  QSizePolicy right(QSizePolicy::Preferred, QSizePolicy::Preferred);
-  right.setHorizontalStretch(1);
-
   QVBoxLayout* vboxl = new QVBoxLayout;
   QVBoxLayout* vboxr = new QVBoxLayout;
-
-  QSizePolicy topleft(QSizePolicy::Preferred, QSizePolicy::Preferred);
-  topleft.setVerticalStretch(2);
-  topleft.setHorizontalStretch(2);
-
-  QSizePolicy bottomleft(QSizePolicy::Preferred, QSizePolicy::Preferred);
-  bottomleft.setVerticalStretch(1);
-  bottomleft.setHorizontalStretch(2);
 
   m_wgtCentral->setLayout(hbox);
 
   m_wgtHangman = new QtHangman(m_wgtCentral);
-  m_wgtHangman->setSizePolicy(topleft);
 
   m_wgtGuess = new QtGuess(m_wgtCentral);
-  m_wgtGuess->setSizePolicy(bottomleft);
 
   m_wgtLetters = new QtLetters(m_logic->getState().alphabet, m_wgtCentral);
-  m_wgtLetters->setSizePolicy(right);
 
-  m_btnNew = pQPushButton_t(new QPushButton(strNewGame.data(), m_wgtCentral));
+  m_btnNew = pQPushButton_t(new QPushButton("", m_wgtCentral));
   vboxr->addWidget(m_btnNew);
   vboxr->addWidget(m_wgtLetters);
 
-  vboxl->addWidget(m_wgtHangman);
-  vboxl->addWidget(m_wgtGuess);
+  vboxl->addWidget(m_wgtHangman, 2);
+  vboxl->addWidget(m_wgtGuess, 1);
 
-  hbox->addLayout(vboxl, 1);
+  hbox->addLayout(vboxl, 2);
   hbox->addLayout(vboxr, 1);
 
   m_wgtHangman->update(state.hangman, state.message);
@@ -132,7 +96,7 @@ QtGameWindow::QtGameWindow(const GameSettings& opts, QWidget* parent)
   connect(m_actGrpLanguages, SIGNAL(triggered(QAction*)), this, SLOT(languageChanged(QAction*)));
   connect(m_wgtLetters, SIGNAL(letterClicked(int)), this, SLOT(letterClicked(int)));
 
-  m_actCategories.front()->setChecked(true);
+  remakeUi();
 }
 
 //===========================================
@@ -193,9 +157,39 @@ void QtGameWindow::languageChanged(QAction* act) {
 
   m_logic->setSettings(opts);
 
+  m_category = 0;
   restart();
 
+  remakeUi();
+}
+
+//===========================================
+// QtGameWindow::remakeUi
+//
+// Remake UI using current language and categories
+//===========================================
+void QtGameWindow::remakeUi() {
   const GameState& state = m_logic->getState();
+
+  for (unsigned int i = 0; i < m_actCategories.size(); ++i)
+    m_actGrpCategories->removeAction(m_actCategories[i]);
+
+  m_actCategories.clear();
+  m_mnuCategory->clear();
+
+  const vector<utf8string_t>& categories = state.categories;
+  for (unsigned int i = 0; i < categories.size(); ++i) {
+
+    pQAction_t cat(new QAction(categories[i].data(), this));
+    cat->setActionGroup(m_actGrpCategories);
+    cat->setCheckable(true);
+
+    m_mnuCategory->addAction(cat);
+
+    m_actCategories.push_back(std::move(cat));
+  }
+
+  m_actCategories.front()->setChecked(true);
 
   m_wgtLetters->remake(state.alphabet);
 
@@ -230,6 +224,9 @@ void QtGameWindow::categoryChanged(QAction* act) {
 
   m_category = i;
   restart();
+
+  const GameState& state = m_logic->getState();
+  m_wgtLetters->remake(state.alphabet);
 }
 
 //===========================================

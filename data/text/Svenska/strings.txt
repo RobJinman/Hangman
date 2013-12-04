@@ -11,4 +11,4 @@ category = &Kategori
 game = &Spel
 new = &Ny
 quit = &Quit
-language = &Språk
+language = S&pråk
