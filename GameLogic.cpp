@@ -1,13 +1,27 @@
+// This file is part of Hangmuž.
+//
+// Copyright Rob Jinman 2013 <admin@robjinman.com>
+//
+// Hangmuž is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Hangmuž is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Hangmuž.  If not, see <http://www.gnu.org/licenses/>.
+
 #include <cstdlib>
-#include <stdexcept>
 #include <ctime>
 #include <sstream>
 #include <fstream>
 #include <cstring>
 #include "GameLogic.hpp"
-
-
-#define ERROR(msg) throw std::runtime_error(msg);
+#include "FileException.hpp"
 
 
 using namespace std;
@@ -126,7 +140,7 @@ void GameLogic::start(const utf8string_t& category) {
   }
 
   if (l > GameState::WORD_SIZE_MAX)
-    ERROR("Error initialising game; Word longer than WORD_SIZE_MAX");
+    EXCEPTION("Error initialising game; Word longer than WORD_SIZE_MAX");
 
   m_state.phraseLen = l;
   m_state.wordLen = l - nSpaces;
@@ -146,7 +160,7 @@ void GameLogic::fetchWords(const utf8string_t& cat) {
   ifstream fin(ss.str());
   if (!fin.good()) {
     fin.close();
-    ERROR("Error loading word list; File not found");
+    FILE_EXCEPTION("Error loading word list; File not found", ss.str());
   }
 
   char buf[512];

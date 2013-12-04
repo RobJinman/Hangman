@@ -1,3 +1,20 @@
+// This file is part of Hangmuž.
+//
+// Copyright Rob Jinman 2013 <admin@robjinman.com>
+//
+// Hangmuž is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Hangmuž is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Hangmuž.  If not, see <http://www.gnu.org/licenses/>.
+
 #ifndef __QT_GAME_WINDOW_HPP__
 #define __QT_GAME_WINDOW_HPP__
 
@@ -12,17 +29,9 @@
 #include "QtGuess.hpp"
 
 
-class QMenu;
 class QAction;
 class QActionGroup;
 class QtLetters;
-
-typedef QMenu* pQMenu_t;
-typedef QAction* pQAction_t;
-typedef QActionGroup* pQActionGroup_t;
-typedef QPushButton* pQPushButton_t;
-typedef QWidget* pQWidget_t;
-typedef QButtonGroup* pQButtonGroup_t;
 
 class QtGameWindow : public QMainWindow {
   Q_OBJECT
@@ -37,6 +46,7 @@ class QtGameWindow : public QMainWindow {
     void categoryChanged(QAction* act);
     void letterClicked(int id);
     void restart();
+    void showAbout();
 
   private:
     enum gameState_t { ST_IDLE, ST_STARTED };
@@ -50,17 +60,19 @@ class QtGameWindow : public QMainWindow {
 
     int m_category;
 
-    pQMenu_t m_mnuGame;
-    pQMenu_t m_mnuCategory;
-    pQMenu_t m_mnuLanguage;
-    pQAction_t m_actNew;
-    pQAction_t m_actQuit;
-    std::vector<pQAction_t> m_actCategories;
-    pQActionGroup_t m_actGrpCategories;
-    std::vector<pQAction_t> m_actLanguages;
-    pQActionGroup_t m_actGrpLanguages;
-    pQPushButton_t m_btnNew;
-    pQWidget_t m_wgtCentral;
+    QMenu* m_mnuGame;
+    QMenu* m_mnuCategory;
+    QMenu* m_mnuLanguage;
+    QMenu* m_mnuHelp;
+    QAction* m_actNew;
+    QAction* m_actQuit;
+    QAction* m_actAbout;
+    std::vector<QAction*> m_actCategories;
+    QActionGroup* m_actGrpCategories;
+    std::vector<QAction*> m_actLanguages;
+    QActionGroup* m_actGrpLanguages;
+    QPushButton* m_btnNew;
+    QWidget* m_wgtCentral;
     QtLetters* m_wgtLetters;
     QtHangman* m_wgtHangman;
     QtGuess* m_wgtGuess;

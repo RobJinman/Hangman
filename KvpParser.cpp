@@ -1,12 +1,26 @@
+// This file is part of Hangmuž.
+//
+// Copyright Rob Jinman 2013 <admin@robjinman.com>
+//
+// Hangmuž is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Hangmuž is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Hangmuž.  If not, see <http://www.gnu.org/licenses/>.
+
 #include <fstream>
 #include <cstdio>
 #include <cstring>
 #include <sstream>
-#include <stdexcept>
 #include "KvpParser.hpp"
-
-
-#define ERROR(msg) throw std::runtime_error(msg);
+#include "FileException.hpp"
 
 
 using namespace std;
@@ -50,7 +64,7 @@ utf8string_t KvpParser::getLine(ifstream& fin) const {
 void KvpParser::parseFile(const utf8string_t& file) {
   ifstream fin(file.data());
   if (!fin.good())
-    ERROR(utf8string_t("Error opening file ") + file);
+    FILE_EXCEPTION("Error opening file", file);
 
   string buf;
   stringstream formatStr;
@@ -65,7 +79,7 @@ void KvpParser::parseFile(const utf8string_t& file) {
       formatStr << "%" << BUF_SIZE - 1 << "[^=]=%" << BUF_SIZE - 1 << "[^\n]";
 
       if (sscanf(buf.data(), formatStr.str().data(), strKey, strVal) != 2)
-        ERROR("Error parsing file");
+        FILE_EXCEPTION("Error parsing file", file);
 
       utf8string_t key(strKey);
       utf8string_t val(strVal);

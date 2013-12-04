@@ -15,14 +15,19 @@
 // You should have received a copy of the GNU General Public License
 // along with Hangmuž.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef __GAME_UI_HPP__
-#define __GAME_UI_HPP__
+#ifndef __QT_APPLICATION_HPP__
+#define __QT_APPLICATION_HPP__
 
 
-class GameUi {
+#include <QApplication>
+
+
+class QtApplication : public QApplication {
   public:
-    virtual int start() = 0;
-    virtual ~GameUi() {}
+    QtApplication(int argc, char** argv)
+      : QApplication(argc, argv) {}
+
+    virtual bool notify(QObject* receiver, QEvent* event);
 };
 
 

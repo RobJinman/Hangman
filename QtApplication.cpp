@@ -15,15 +15,29 @@
 // You should have received a copy of the GNU General Public License
 // along with Hangmuž.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef __GAME_UI_HPP__
-#define __GAME_UI_HPP__
+#include <stdexcept>
+#include <iostream>
+#include "QtApplication.hpp"
 
 
-class GameUi {
-  public:
-    virtual int start() = 0;
-    virtual ~GameUi() {}
-};
+using namespace std;
 
 
-#endif
+//===========================================
+// QtApplication::QtApplication
+//===========================================
+bool QtApplication::notify(QObject* receiver, QEvent* event) {
+  try {
+    return QApplication::notify(receiver, event);
+  } 
+  catch (exception& e) {
+    cerr << "Encountered fatal error: " << e.what() << "\n";
+    exit(EXIT_FAILURE);
+  }
+  catch (...) {
+    cerr << "Encountered fatal error: Cause unknown\n";
+    exit(EXIT_FAILURE);
+  }
+
+  return false;
+}

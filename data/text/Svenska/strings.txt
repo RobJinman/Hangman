@@ -1,4 +1,4 @@
-title = Hangman
+title = Hangmuž
 categorysub = Välj en kategori
 success = Framgång!
 failure = Misslyckades
@@ -12,3 +12,7 @@ game = &Spel
 new = &Ny
 quit = &Quit
 language = S&pråk
+help = &Hjälp
+about = &Om
+abouttitle = Om Hangmuž
+aboutbody = Version: 1.0.0\nFörfattare: Rob Jinman\nKontakt: admin@robjinman.com
