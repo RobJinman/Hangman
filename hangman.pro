@@ -7,7 +7,7 @@ TARGET =
 DEPENDPATH += .
 INCLUDEPATH += .
 LIBS =
-QMAKE_CXXFLAGS = -std=c++0x -g
+QMAKE_CXXFLAGS = -std=c++0x
 
 # Input
 HEADERS += Game.hpp \
