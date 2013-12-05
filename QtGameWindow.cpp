@@ -36,7 +36,22 @@ using namespace std;
 // QtGameWindow::QtGameWindow
 //===========================================
 QtGameWindow::QtGameWindow(const GameSettings& opts, QWidget* parent)
-  : QMainWindow(parent), m_gameState(ST_IDLE) {
+  : QMainWindow(parent),
+    m_gameState(ST_IDLE),
+    m_mnuGame(NULL),
+    m_mnuCategory(NULL),
+    m_mnuLanguage(NULL),
+    m_mnuHelp(NULL),
+    m_actNew(NULL),
+    m_actQuit(NULL),
+    m_actAbout(NULL),
+    m_actGrpCategories(NULL),
+    m_actGrpLanguages(NULL),
+    m_btnNew(NULL),
+    m_wgtCentral(NULL),
+    m_wgtLetters(NULL),
+    m_wgtHangman(NULL),
+    m_wgtGuess(NULL) {
 
   getLanguages();
 
@@ -117,6 +132,29 @@ QtGameWindow::QtGameWindow(const GameSettings& opts, QWidget* parent)
   connect(m_actAbout, SIGNAL(triggered()), this, SLOT(showAbout()));
 
   remakeUi();
+
+  getVersion();
+}
+
+//===========================================
+// QtGameWindow::getVersion
+//===========================================
+void QtGameWindow::getVersion() {
+  ifstream fin("./VERSION.txt");
+
+  if (!fin.good()) {
+    m_version = "1.?.?";
+  }
+  else {
+    char buf[32];
+    memset(buf, 0, 32);
+
+    fin.getline(buf, 32);
+
+    m_version = utf8string_t(buf);
+  }
+
+  fin.close();
 }
 
 //===========================================
@@ -130,7 +168,10 @@ void QtGameWindow::showAbout() {
 
   for (int i = static_cast<int>(strBody.length()) - 2; i >= 0; --i) {
     if (strncmp(&strBody.data()[i], "\\n", 2) == 0)
-    strBody.replace(i, 2, "\n");
+      strBody.replace(i, 2, "\n");
+
+    if (strncmp(&strBody.data()[i], "%v", 2) == 0)
+      strBody.replace(i, 2, m_version);
   }
 
   QMessageBox::about(this, strTitle.data(), strBody.data());
@@ -143,8 +184,10 @@ void QtGameWindow::getLanguages() {
   utf8string_t path("data/text/languages.txt");
   ifstream fin(path);
 
-  if (!fin.good())
+  if (!fin.good()) {
+    fin.close();
     FILE_EXCEPTION("Error checking available languages; bad file", path);
+  }
 
   while (!fin.eof()) {
     char buf[64];
@@ -295,5 +338,23 @@ void QtGameWindow::letterClicked(int id) {
 // QtGameWindow::~QtGameWindow
 //===========================================
 QtGameWindow::~QtGameWindow() {
+  delete m_wgtCentral;
 
+  delete m_mnuGame;
+  delete m_mnuCategory;
+  delete m_mnuLanguage;
+  delete m_mnuHelp;
+  delete m_actNew;
+  delete m_actQuit;
+  delete m_actAbout;
+
+  for (auto i = m_actCategories.begin() : m_actCategories.end())
+    delete *i;
+
+  delete m_actGrpCategories;
+
+  for (auto i = m_actLanguages.begin() : m_actLanguages.end())
+    delete *i;
+
+  delete m_actGrpLanguages;
 }

@@ -106,4 +106,10 @@ void QtLetters::disable() {
 //===========================================
 // QtLetters::~QtLetters
 //===========================================
-QtLetters::~QtLetters() {}
+QtLetters::~QtLetters() {
+  delete m_grid;
+  delete m_grpLetters;
+
+  for (auto i = m_letters.begin() : m_letters.end())
+    delete *i;
+}
