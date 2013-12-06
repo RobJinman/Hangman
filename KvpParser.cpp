@@ -63,8 +63,11 @@ utf8string_t KvpParser::getLine(ifstream& fin) const {
 //===========================================
 void KvpParser::parseFile(const utf8string_t& file) {
   ifstream fin(file.data());
-  if (!fin.good())
+
+  if (!fin.good()) {
+    fin.close();
     FILE_EXCEPTION("Error opening file", file);
+  }
 
   string buf;
   stringstream formatStr;
@@ -78,8 +81,10 @@ void KvpParser::parseFile(const utf8string_t& file) {
       formatStr.str("");
       formatStr << "%" << BUF_SIZE - 1 << "[^=]=%" << BUF_SIZE - 1 << "[^\n]";
 
-      if (sscanf(buf.data(), formatStr.str().data(), strKey, strVal) != 2)
+      if (sscanf(buf.data(), formatStr.str().data(), strKey, strVal) != 2) {
+        fin.close();
         FILE_EXCEPTION("Error parsing file", file);
+      }
 
       utf8string_t key(strKey);
       utf8string_t val(strVal);

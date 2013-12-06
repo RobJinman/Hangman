@@ -15,4 +15,4 @@ language = &Language
 help = &Help
 about = &About
 abouttitle = About Hangmuž
-aboutbody = Version: 1.0.0\nAuthor: Rob Jinman\nContact: admin@robjinman.com
+aboutbody = Version: %v\nAuthor: Rob Jinman\nContact: admin@robjinman.com

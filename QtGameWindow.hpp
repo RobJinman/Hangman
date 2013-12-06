@@ -53,6 +53,9 @@ class QtGameWindow : public QMainWindow {
 
     void getLanguages();
     void remakeUi();
+    void getVersion();
+
+    utf8string_t m_version;
 
     gameState_t m_gameState;
     std::unique_ptr<GameLogic> m_logic;
