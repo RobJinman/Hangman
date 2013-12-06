@@ -56,7 +56,7 @@ void QtLetters::remake(const ucs4string_t& alphabet) {
     m_letters.push_back(btn);
 
     m_grpLetters->addButton(btn, i);
-    m_grid->addWidget(btn, x + 1, y);
+    m_grid->addWidget(btn, x, y);
   }
 
   connect(m_grpLetters, SIGNAL(buttonClicked(int)), this, SLOT(onLetterClick(int)));
