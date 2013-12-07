@@ -194,10 +194,11 @@ void QtGameWindow::getLanguages() {
     memset(buf, 0, 64);
 
     fin.getline(buf, 64);
-    if (fin.eof()) break;
 
-    utf8string_t lang(buf);
-    m_languages.push_back(lang);
+    if (strlen(buf) > 0) {
+      utf8string_t lang(buf);
+      m_languages.push_back(lang);
+    }
   }
 
   fin.close();
@@ -260,7 +261,6 @@ void QtGameWindow::remakeUi() {
 
   const vector<utf8string_t>& categories = state.categories;
   for (unsigned int i = 0; i < categories.size(); ++i) {
-
     QAction* cat = new QAction(categories[i].data(), this);
     cat->setActionGroup(m_actGrpCategories);
     cat->setCheckable(true);
@@ -348,12 +348,12 @@ QtGameWindow::~QtGameWindow() {
   delete m_actQuit;
   delete m_actAbout;
 
-  for (auto i = m_actCategories.begin() : m_actCategories.end())
+  for (auto i = m_actCategories.begin(); i != m_actCategories.end(); ++i)
     delete *i;
 
   delete m_actGrpCategories;
 
-  for (auto i = m_actLanguages.begin() : m_actLanguages.end())
+  for (auto i = m_actLanguages.begin(); i != m_actLanguages.end(); ++i)
     delete *i;
 
   delete m_actGrpLanguages;

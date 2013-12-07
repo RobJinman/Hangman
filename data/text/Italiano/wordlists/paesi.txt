@@ -1,0 +1,197 @@
+abcdefghijklmnopqrstuvwyzàù'-
+afghanistan
+albania
+algeria
+andorra
+angola
+antigua e deps
+argentina
+armenia
+australia
+austria
+azerbaijan
+bahamas
+bahrain
+bangladesh
+barbados
+bielorussia
+belgio
+belize
+benin
+bhutan
+bolivia
+bosnia ed erzegovina
+botswana
+brasile
+brunei
+bulgaria
+burkina
+burundi
+cambogia
+camerun
+canada
+capo verde
+central african rep
+chad
+chile
+porcellana
+colombia
+comore
+congo
+repubblica democratica del congo
+costarica
+croazia
+cuba
+cipro
+repubblica ceca
+danimarca
+gibuti
+dominica
+repubblica dominicana
+timor est
+ecuador
+egitto
+el salvador
+guinea equatoriale
+eritrea
+estonia
+etiopia
+fiji
+finlandia
+francia
+gabon
+gambia
+georgia
+germania
+ghana
+grecia
+grenada
+guatemala
+guinea
+guinea -bissau
+guyana
+haiti
+honduras
+ungheria
+islanda
+india
+indonesia
+iran
+iraq
+irlanda
+israele
+italia
+costa d'avorio
+giamaica
+giappone
+giordania
+kazakhstan
+kenia
+kiribati
+corea del nord
+corea del sud
+kosovo
+kuwait
+kirghizistan
+laos
+lettonia
+libano
+lesoto
+liberia
+libia
+liechtenstein
+lituania
+lussemburgo
+macedonia
+madagascar
+malawi
+malaysia
+maldive
+mali
+malta
+isole marshall
+mauritania
+mauritius
+messico
+micronesia
+moldova
+monaco
+mongolia
+montenegro
+marocco
+mozambico
+myanmar
+namibia
+nauru
+nepal
+paesi bassi
+neozelandese
+nicaragua
+niger
+nigeria
+norvegia
+oman
+pakistan
+palau
+panama
+papua nuova guinea
+paraguay
+perù
+filippine
+polonia
+portogallo
+qatar
+romania
+federazione russa
+ruanda
+st kitts e nevis
+st lucia
+saint vincent e grenadine
+samoa
+san marino
+sao tome e principe
+arabia saudita
+senegal
+serbia
+seychelles
+sierra leone
+singapore
+slovacchia
+slovenia
+isole salomone
+somalia
+sudafrica
+sud sudan
+spagna
+sri lanka
+sudan
+suriname
+swaziland
+svezia
+svizzera
+siria
+taiwan
+tagikistan
+tanzania
+thailandia
+togo
+tonga
+trinidad e tobago
+tunisia
+turchia
+turkmenistan
+tuvalu
+uganda
+ucraina
+emirati arabi uniti
+regno unito
+stati uniti
+uruguay
+uzbekistan
+vanuatu
+città del vaticano
+venezuela
+vietnam
+yemen
+zambia
+zimbabwe

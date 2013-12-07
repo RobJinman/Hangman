@@ -110,6 +110,6 @@ QtLetters::~QtLetters() {
   delete m_grid;
   delete m_grpLetters;
 
-  for (auto i = m_letters.begin() : m_letters.end())
+  for (auto i = m_letters.begin(); i != m_letters.end(); ++i)
     delete *i;
 }

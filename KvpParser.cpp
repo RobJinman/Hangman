@@ -74,7 +74,7 @@ void KvpParser::parseFile(const utf8string_t& file) {
 
   buf = getLine(fin);
 
-  while (!fin.eof()) {
+  while (1) {
     if (buf.length() > 0) {
       char strKey[BUF_SIZE], strVal[BUF_SIZE];
 
@@ -94,6 +94,8 @@ void KvpParser::parseFile(const utf8string_t& file) {
 
       m_data[key] = val;
     }
+
+    if (fin.eof()) break;
     buf = getLine(fin);
   }
 
