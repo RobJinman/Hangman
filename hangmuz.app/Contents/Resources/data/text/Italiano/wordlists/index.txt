@@ -1,0 +1,3 @@
+Animali=animali.txt
+Paesi=paesi.txt
+Capitali=capitali.txt

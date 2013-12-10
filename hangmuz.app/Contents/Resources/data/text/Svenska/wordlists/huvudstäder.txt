@@ -1,0 +1,200 @@
+abcdefghijklmnopqrstuvwxyz-'
+abu dhabi
+abuja
+accra
+addis abeba
+alger
+amman
+andorra la vella
+ankara
+antananarivo
+apia
+ashgabat
+asmara
+astana
+asunción
+aten
+baku
+bandar seri begawan
+bagdad
+bamako
+bangkok
+bangui
+banjul
+basse
+peking
+beirut
+belgrad
+belmopan
+belfast
+berlin
+bern
+bishkek
+bissau
+bogota
+brasilia
+bratislava
+brazzaville
+bridgetown
+bryssel
+budapest
+bukarest
+buenos aires
+bujumbura
+kairo
+canberra
+caracas
+cardiff
+castries
+cayenne
+chisinau
+colombo
+conakry
+köpenhamn
+dakar
+damascus
+dhaka
+dar es-salaam
+dili
+djibouti
+doha
+dublin
+dusjanbe
+edinburgh
+free
+gaborone
+georgetown
+guatemala city
+hanoi
+harare
+havana
+helsinki
+honiara
+islamabad
+jakarta
+juba
+kabul
+katmandu
+kampala
+khartoum
+kiev
+kigali
+kingston
+kings
+kinshasa
+kuala lumpur
+kuwait city
+la paz
+libre
+lilongwe
+lima
+lissabon
+ljubljana
+lome
+london
+luanda
+lusaka
+luxembourg
+madrid
+majuro
+malabo
+man
+managua
+manama
+manila
+maputo
+maseru
+mbabana
+melekeok
+mexico city
+minsk
+mogadishu
+monaco
+monrovia
+montevideo
+moroni
+moskva
+muscat
+nairobi
+nassau
+tchad
+new delhi
+niamey
+nicosia
+nouakchott
+nuku'alofa
+ouagadougou
+oslo
+ottawa
+palikir
+panama city
+para
+paris
+phnom penh
+podgorica
+port -au-prince
+port louis
+port moresby
+port of spain
+port vila
+porto novo
+prag
+praia
+pretoria
+tina
+pyong
+quito
+rabat
+rangoon
+reykjavik
+riga
+riyadh
+rom
+roseau dominica
+saint georges
+saint johns
+san jose
+san marino
+san salvador
+sanaa
+santiago
+santo domingo
+sao tome
+sarajevo
+seoul
+singapore
+skopje
+sofia
+stockholm
+suva
+taipei
+tallinn
+tarawa atoll
+tasjkent
+tbilisi
+tegucigalpa
+teheran
+tel aviv
+amsterdam
+thimphu
+tirana
+tokyo
+tripoli
+tunisien
+ulaanbaatar
+vaduz
+vaiaku by
+vall
+vatikanstaten
+victoria
+wien
+tian
+vilnius
+warszawa
+washington dc
+wellington
+windhoek
+yamoussoukro
+yaounde
+jerevan
+zagreb
