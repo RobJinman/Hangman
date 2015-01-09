@@ -1,4 +1,4 @@
-title = Hangmuž
+title = Hangman
 categorysub = Seleziona una categoria
 success = Successo!
 failure = Mancato
@@ -14,5 +14,5 @@ quit = &Smettere
 language = &Lingua
 help = &Aiutare
 about = &Attorno
-abouttitle = Su Hangmuž
+abouttitle = Su Hangman
 aboutbody = Versione: %v\nAutore: Rob Jinman\nContatto: admin@robjinman.com

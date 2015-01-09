@@ -1,3 +1,0 @@
-Djur=djur.txt
-Huvudstäder=huvudstäder.txt
-Länder=länder.txt

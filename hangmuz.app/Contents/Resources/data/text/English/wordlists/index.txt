@@ -1,3 +1,0 @@
-Animals=animals.txt
-Countries=countries.txt
-Capital Cities=capital cities.txt

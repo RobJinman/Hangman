@@ -1,4 +1,4 @@
-Hangmuž by Rob Jinman
+Hangman by Rob Jinman
 
 
 Dependencies: qt4
