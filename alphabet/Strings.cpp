@@ -1,4 +1,4 @@
-// This file is part of Hangmuž.
+// This file is part of Hangman.
 //
 // Copyright Rob Jinman 2013 <admin@robjinman.com>
 //
