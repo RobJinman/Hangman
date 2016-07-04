@@ -16,17 +16,19 @@
 // along with Hangman.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <fstream>
+#include <cassert>
+#include <sstream>
 #include <QMenuBar>
 #include <QApplication>
 #include <QPainter>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QMessageBox>
-#include <cassert>
 #include "Strings.hpp"
 #include "QtGameWindow.hpp"
 #include "QtLetters.hpp"
 #include "FileException.hpp"
+#include "Utils.hpp"
 
 
 using namespace std;
@@ -140,7 +142,12 @@ QtGameWindow::QtGameWindow(const GameSettings& opts, QWidget* parent)
 // QtGameWindow::getVersion
 //===========================================
 void QtGameWindow::getVersion() {
-  ifstream fin("./VERSION.txt");
+  stringstream ss;
+  ss << utils::dataPath() << "/VERSION";
+
+  utf8string_t path = utils::platformPath(ss.str());
+
+  ifstream fin(path);
 
   if (!fin.good()) {
     m_version = "1.?.?";
@@ -181,7 +188,10 @@ void QtGameWindow::showAbout() {
 // QtGameWindow::getLanguages
 //===========================================
 void QtGameWindow::getLanguages() {
-  utf8string_t path("data/text/languages.txt");
+  stringstream ss;
+  ss << utils::dataPath() << "/text/languages.txt";
+
+  utf8string_t path = utils::platformPath(ss.str());
   ifstream fin(path);
 
   if (!fin.good()) {

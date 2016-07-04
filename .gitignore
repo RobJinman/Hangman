@@ -1,4 +1,2 @@
-*.o
-hangman
-moc_*
-Makefile
+/build/
+

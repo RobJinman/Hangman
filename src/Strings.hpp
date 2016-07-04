@@ -19,6 +19,7 @@
 #define __STRINGS_HPP__
 
 
+#include <cstdint>
 #include <string>
 
 

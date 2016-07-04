@@ -40,10 +40,13 @@ class Exception : public std::runtime_error {
       : std::runtime_error(msg), m_msg(msg), m_file(file), m_line(line) {}
 
     virtual const char* what() const throw() {
+      static utf8string_t msg;
       std::stringstream ss;
-      ss << m_msg << " (FILE: " << m_file << ", LINE: " << m_line << ")";
 
-      return ss.str().data();
+      ss << m_msg << " (FILE: " << m_file << ", LINE: " << m_line << ")";
+      msg = ss.str();
+
+      return msg.data();
     }
 
     void append(const utf8string_t& text) throw() {

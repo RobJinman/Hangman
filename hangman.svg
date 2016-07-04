@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="48"
+   height="48"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="unison-gtk.svg"
+   version="1.0">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient4637">
+      <stop
+         id="stop4639"
+         offset="0"
+         style="stop-color:yellow;stop-opacity:1;" />
+      <stop
+         style="stop-color:yellow;stop-opacity:1;"
+         offset="0.5"
+         id="stop4649" />
+      <stop
+         style="stop-color:#f30;stop-opacity:1;"
+         offset="1"
+         id="stop4645" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.784233"
+     inkscape:cx="61.609841"
+     inkscape:cy="8.4958545"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="1280"
+     inkscape:window-height="975"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     width="48px"
+     height="48px"
+     showgrid="false"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Unison Logo</dc:title>
+        <dc:date>2007-05-01</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Eric Lavarde</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:contributor>
+          <cc:Agent>
+            <dc:title>Benjamin C. Pierce, Jérôme Vouillon, S. Balasubramaniam</dc:title>
+          </cc:Agent>
+        </dc:contributor>
+        <dc:description>The U with arrow ends and yellow/red gradient from Unison</dc:description>
+        <dc:coverage>The Unison File Synchronizer Project or any packaging effort of Unison offering free access to the package sources</dc:coverage>
+        <dc:relation>http://www.cis.upenn.edu/~bcpierce/unison/Unison.gif</dc:relation>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>The Unison File Synchronizer Project</dc:title>
+          </cc:Agent>
+        </dc:rights>
+        <dc:language>N/A</dc:language>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>Unison</rdf:li>
+            <rdf:li>Synchronizer</rdf:li>
+            <rdf:li>Logo</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/GPL/2.0/" />
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>Eric Lavarde</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:identifier>http://eric.lavar.de/comp/unison/Unison.svg</dc:identifier>
+        <dc:source>http://eric.lavar.de/comp/unison/Unison.svg</dc:source>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/GPL/2.0/">
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Reproduction" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Distribution" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/Notice" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/ShareAlike" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/SourceCode" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g4222"
+       transform="matrix(0.81092838,0,0,0.74363844,-38.51412,0.260798)">
+      <ellipse
+         ry="4.4444447"
+         rx="4.3174605"
+         cy="22.984127"
+         cx="94.349213"
+         id="path3339"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.25354314;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3341"
+         d="m 94.317516,27.487669 0.04515,11.847763"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.25354314;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3343"
+         d="M 94.30994,27.934279 89.685687,35.07269"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.25354314;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3343-6"
+         d="m 94.407435,27.934279 4.624253,7.138411"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.25354314;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3343-8"
+         d="m 94.30994,38.39497 -4.624253,7.138411"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.25354314;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3343-6-8"
+         d="m 94.407435,38.39497 4.624253,7.138411"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.25354314;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path4207"
+         d="m 53.225135,58.793651 13.894423,0.06349"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.25354314;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path4213"
+         d="M 60.063492,58.539683 59.809524,5.5873016"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.25354314;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path4215"
+         d="m 94.349211,18.158731 0,-12.9620667"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.25354314;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path4217"
+         d="M 58.980487,5.968254 95.114753,5.7142857"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.25354314;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path4219"
+         d="M 59.801031,19.401459 73.808479,5.9776541"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.25354314;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+  </g>
+</svg>

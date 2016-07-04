@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Hangman
+Comment=A game of hangman supporting multiple languages
+GenericName=Hangman
+Exec=hangman
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=hangman.svg
+Categories=Game;
+StartupWMClass=Hangman
+StartupNotify=true

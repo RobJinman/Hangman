@@ -32,7 +32,7 @@ QtUi::QtUi(int argc, char** argv) {
   m_argc = argc;
   m_argv = argv;
 
-  QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+  QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
 }
 
 //===========================================

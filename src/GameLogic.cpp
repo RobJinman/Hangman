@@ -22,6 +22,7 @@
 #include <cstring>
 #include "GameLogic.hpp"
 #include "FileException.hpp"
+#include "Utils.hpp"
 
 
 using namespace std;
@@ -51,10 +52,9 @@ void GameLogic::setSettings(const GameSettings& opts) {
 //===========================================
 void GameLogic::loadStrings() {
   stringstream ss;
-  ss << "./data/text/" + m_opts.language + "/strings.txt";
+  ss << utils::dataPath() << "/text/" << m_opts.language << "/strings.txt";
 
-  utf8string_t path(ss.str());
-
+  utf8string_t path = utils::platformPath(ss.str());
   m_state.strings.parseFile(path);
 }
 
@@ -155,12 +155,14 @@ void GameLogic::fetchWords(const utf8string_t& cat) {
   utf8string_t file = m_categories.getValue(cat);
 
   stringstream ss;
-  ss << "./data/text/" << m_opts.language << "/wordlists/" << file;
+  ss << utils::dataPath() << "/text/" << m_opts.language << "/wordlists/" << file;
 
-  ifstream fin(ss.str());
+  utf8string_t path = utils::platformPath(ss.str());
+
+  ifstream fin(path);
   if (!fin.good()) {
     fin.close();
-    FILE_EXCEPTION("Error loading word list; File not found", ss.str());
+    FILE_EXCEPTION("Error loading word list; File not found", path);
   }
 
   char buf[512];
@@ -187,9 +189,9 @@ void GameLogic::fetchWords(const utf8string_t& cat) {
 //===========================================
 void GameLogic::fetchCategories() {
   stringstream ss;
-  ss << "./data/text/" + m_opts.language + "/wordlists/index.txt";
+  ss << utils::dataPath() << "/text/" << m_opts.language << "/wordlists/index.txt";
 
-  utf8string_t path(ss.str());
+  utf8string_t path = utils::platformPath(ss.str());
 
   m_categories.clear();
   m_categories.parseFile(path);

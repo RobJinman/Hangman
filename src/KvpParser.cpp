@@ -69,7 +69,7 @@ void KvpParser::parseFile(const utf8string_t& file) {
     FILE_EXCEPTION("Error opening file", file);
   }
 
-  string buf;
+  utf8string_t buf;
   stringstream formatStr;
 
   buf = getLine(fin);
