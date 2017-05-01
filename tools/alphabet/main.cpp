@@ -24,7 +24,9 @@ int main(int argc, char** argv) {
   char buf[128];
 
   while (1) {
-    if (fin.eof()) break;
+    if (fin.eof()) {
+      break;
+    }
 
     memset(buf, '\0', 128);
     fin.getline(buf, 128);
@@ -33,8 +35,9 @@ int main(int argc, char** argv) {
     ucs4string_t ucs = utf8ToUcs4(utf);
 
     for (unsigned int i = 0; i < ucs.length(); ++i) {
-      if (ucs[i] != ' ' && ucs[i] != '\t' && ucs[i] != '\n')
+      if (ucs[i] != ' ' && ucs[i] != '\t' && ucs[i] != '\n') {
         chars.insert(ucs[i]);
+      }
     }
   }
 

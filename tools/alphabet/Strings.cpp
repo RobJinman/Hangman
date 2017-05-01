@@ -2,18 +2,18 @@
 //
 // Copyright Rob Jinman 2013 <admin@robjinman.com>
 //
-// Hangmuž is free software: you can redistribute it and/or modify
+// Hangman is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// Hangmuž is distributed in the hope that it will be useful,
+// Hangman is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Hangmuž.  If not, see <http://www.gnu.org/licenses/>.
+// along with Hangman.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include "Strings.hpp"
@@ -69,37 +69,54 @@ ucs4string_t utf8ToUcs4(const utf8string_t& utf) {
     uint8_t c = utf.data()[i];
 
     if (c >> 7 == 0b0) {
-      if (i > 0) ucs.push_back(val);
+      if (i > 0) {
+        ucs.push_back(val);
+      }
       val = c;
-      if (i + 1 == utf.length()) ucs.push_back(val);
+      if (i + 1 == utf.length()) {
+        ucs.push_back(val);
+      }
     }
     else if (c >> 6 == 0b10) {
       val = val << 6;
       val += c & 0b111111;
-      if (i + 1 == utf.length()) ucs.push_back(val);
+      if (i + 1 == utf.length()) {
+        ucs.push_back(val);
+      }
     }
     else if (c >> 5 == 0b110) {
-      if (i > 0) ucs.push_back(val);
+      if (i > 0) {
+        ucs.push_back(val);
+      }
       val = c & 0b11111;
     }
     else if (c >> 4 == 0b1110) {
-      if (i > 0) ucs.push_back(val);
+      if (i > 0) {
+        ucs.push_back(val);
+      }
       val = c & 0b1111;
     }
     else if (c >> 3 == 0b11110) {
-      if (i > 0) ucs.push_back(val);
+      if (i > 0) {
+        ucs.push_back(val);
+      }
       val = c & 0b111;
     }
     else if (c >> 2 == 0b111110) {
-      if (i > 0) ucs.push_back(val);
+      if (i > 0) {
+        ucs.push_back(val);
+      }
       val = c & 0b11;
     }
     else if (c >> 1 == 0b1111110) {
-      if (i > 0) ucs.push_back(val);
+      if (i > 0) {
+        ucs.push_back(val);
+      }
       val = c & 0b1;
     }
-    else
+    else {
       assert(false);
+    }
   }
 
   return ucs;

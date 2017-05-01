@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
 project(hangman)
+add_subdirectory(tools)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
@@ -48,4 +49,3 @@ set(CPACK_DEBIAN_PACKAGE_SECTION games)
 message("${CPACK_DEBIAN_PACKAGE_VERSION}")
 set(CPACK_GENERATOR "DEB")
 include(CPack)
-
