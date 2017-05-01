@@ -91,16 +91,18 @@ void QtLetters::onLetterClick(int id) {
 // QtLetters::enable
 //===========================================
 void QtLetters::enable() {
-  for (unsigned int i = 0; i < m_letters.size(); ++i)
+  for (unsigned int i = 0; i < m_letters.size(); ++i) {
     m_letters[i]->setEnabled(true);
+  }
 }
 
 //===========================================
 // QtLetters::disable
 //===========================================
 void QtLetters::disable() {
-  for (unsigned int i = 0; i < m_letters.size(); ++i)
+  for (unsigned int i = 0; i < m_letters.size(); ++i) {
     m_letters[i]->setEnabled(false);
+  }
 }
 
 //===========================================
@@ -110,6 +112,7 @@ QtLetters::~QtLetters() {
   delete m_grid;
   delete m_grpLetters;
 
-  for (auto i = m_letters.begin(); i != m_letters.end(); ++i)
+  for (auto i = m_letters.begin(); i != m_letters.end(); ++i) {
     delete *i;
+  }
 }

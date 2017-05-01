@@ -99,7 +99,9 @@ int TextUi::start() {
       ss << buf;
       ss >> c;
 
-      if (!ss.fail() && c < categories.size()) break;
+      if (!ss.fail() && c < categories.size()) {
+        break;
+      }
 
       utf8string_t badcat = state.strings.getValue("badcategory");
       m_display.putChars(badcat, 2, 11);
@@ -203,8 +205,9 @@ void TextUi::draw() const {
 
       m_display.putChars(utf, i, j);
     }
-    else
+    else {
       m_display.putChar(' ', i, j);
+    }
   }
 
   m_display.flush();

@@ -33,7 +33,9 @@ int Game::launch(int argc, char** argv) {
 
   for (int i = 0; i < argc; ++i) {
     if (strncmp("-ui=", argv[i], 4) == 0) {
-      if (strcmp(&argv[i][4], "text") == 0) uiType = TEXT;
+      if (strcmp(&argv[i][4], "text") == 0) {
+        uiType = TEXT;
+      }
     }
   }
 

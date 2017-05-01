@@ -89,7 +89,9 @@ bool GameLogic::processInput(const utf8string_t& chars) {
       }
     }
 
-    if (!b) m_state.hangman.advance();
+    if (!b) {
+      m_state.hangman.advance();
+    }
 
     if (m_state.nCorrect == m_state.wordLen) {
       success();
@@ -115,8 +117,9 @@ void GameLogic::start(const utf8string_t& category) {
 
   m_state.nCorrect = 0;
 
-  for (unsigned int i = 0; i < m_state.alphabet.length(); ++i)
+  for (unsigned int i = 0; i < m_state.alphabet.length(); ++i) {
     m_state.availableLetters.insert(m_state.alphabet[i]);
+  }
 
   srand(time(NULL));
   int r = rand() % m_words->size();
@@ -139,8 +142,9 @@ void GameLogic::start(const utf8string_t& category) {
     }
   }
 
-  if (l > GameState::WORD_SIZE_MAX)
+  if (l > GameState::WORD_SIZE_MAX) {
     EXCEPTION("Error initialising game; Word longer than WORD_SIZE_MAX");
+  }
 
   m_state.phraseLen = l;
   m_state.wordLen = l - nSpaces;
@@ -177,8 +181,9 @@ void GameLogic::fetchWords(const utf8string_t& cat) {
   while (!fin.eof()) {
     fin.getline(buf, 512);
 
-    if (!fin.eof())
+    if (!fin.eof()) {
       m_words->push_back(utf8string_t(buf));
+    }
   }
 
   fin.close();

@@ -32,16 +32,18 @@ TextDisplay::TextDisplay(int w, int h) {
 
   m_pixels = new uint32_t*[w];
 
-  for (int i = 0; i < w; ++i)
+  for (int i = 0; i < w; ++i) {
     m_pixels[i] = new uint32_t[h];
+  }
 }
 
 //===========================================
 // TextDisplay::putChar
 //===========================================
 void TextDisplay::putChar(uint32_t c, int x, int y) {
-  if (x >= m_w || y >= m_h)
+  if (x >= m_w || y >= m_h) {
     EXCEPTION("Error putting char; Coords out of range");
+  }
 
   m_pixels[x][y] = c;
 }
@@ -53,7 +55,9 @@ void TextDisplay::putChars(const utf8string_t& str, int x, int y) {
   ucs4string_t ucs = utf8ToUcs4(str);
 
   for (int i = 0; i < static_cast<int>(ucs.length()); ++i) {
-    if (x + i >= m_w) break;
+    if (x + i >= m_w) {
+      break;
+    }
 
     putChar(ucs.data()[i], x + i, y);
   }

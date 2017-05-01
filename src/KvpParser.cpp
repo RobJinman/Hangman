@@ -36,7 +36,9 @@ static const unsigned int BUF_SIZE = 256;
 //===========================================
 utf8string_t KvpParser::getValue(const utf8string_t& key) const {
   map<utf8string_t, utf8string_t>::const_iterator it = m_data.find(key);
-  if (it == m_data.end()) return utf8string_t("");
+  if (it == m_data.end()) {
+    return utf8string_t("");
+  }
 
   return it->second;
 }
@@ -49,11 +51,16 @@ utf8string_t KvpParser::getLine(ifstream& fin) const {
   memset(buf, 0, BUF_SIZE);
 
   fin.getline(buf, BUF_SIZE);
-  for (unsigned int i = 0; i < BUF_SIZE; i++)
-    if (buf[i] == '#') buf[i] = '\0';
+  for (unsigned int i = 0; i < BUF_SIZE; i++) {
+    if (buf[i] == '#') {
+      buf[i] = '\0';
+    }
+  }
 
   utf8string_t str(buf);
-  while (str[0] == ' ' || str[0] == '\t') str.erase(0, 1);
+  while (str[0] == ' ' || str[0] == '\t') {
+    str.erase(0, 1);
+  }
 
   return str;
 }
@@ -89,13 +96,21 @@ void KvpParser::parseFile(const utf8string_t& file) {
       utf8string_t key(strKey);
       utf8string_t val(strVal);
 
-      while (key.back() == ' ' || key.back() == '\t') key.erase(key.size() - 1);
-      while (val.front() == ' ' || val.front() == '\t') val.erase(0, 1);
+      while (key.back() == ' ' || key.back() == '\t') {
+        key.erase(key.size() - 1);
+      }
+
+      while (val.front() == ' ' || val.front() == '\t') {
+        val.erase(0, 1);
+      }
 
       m_data[key] = val;
     }
 
-    if (fin.eof()) break;
+    if (fin.eof()) {
+      break;
+    }
+
     buf = getLine(fin);
   }
 

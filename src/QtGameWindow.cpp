@@ -84,8 +84,9 @@ QtGameWindow::QtGameWindow(const GameSettings& opts, QWidget* parent)
     lang->setActionGroup(m_actGrpLanguages);
     lang->setCheckable(true);
 
-    if (m_languages[i].compare(opts.language) == 0)
+    if (m_languages[i].compare(opts.language) == 0) {
       lang->setChecked(true);
+    }
 
     m_mnuLanguage->addAction(lang);
 
@@ -174,11 +175,13 @@ void QtGameWindow::showAbout() {
   utf8string_t strBody = state.strings.getValue("aboutbody");
 
   for (int i = static_cast<int>(strBody.length()) - 2; i >= 0; --i) {
-    if (strncmp(&strBody.data()[i], "\\n", 2) == 0)
+    if (strncmp(&strBody.data()[i], "\\n", 2) == 0) {
       strBody.replace(i, 2, "\n");
+    }
 
-    if (strncmp(&strBody.data()[i], "%v", 2) == 0)
+    if (strncmp(&strBody.data()[i], "%v", 2) == 0) {
       strBody.replace(i, 2, m_version);
+    }
   }
 
   QMessageBox::about(this, strTitle.data(), strBody.data());
@@ -239,7 +242,9 @@ void QtGameWindow::languageChanged(QAction* act) {
   int i = -1;
 
   for (i = 0; i < static_cast<int>(m_actLanguages.size()); ++i) {
-    if (m_actLanguages[i] == act) break;
+    if (m_actLanguages[i] == act) {
+      break;
+    }
   }
 
   assert(i != -1);
@@ -263,8 +268,9 @@ void QtGameWindow::languageChanged(QAction* act) {
 void QtGameWindow::remakeUi() {
   const GameState& state = m_logic->getState();
 
-  for (unsigned int i = 0; i < m_actCategories.size(); ++i)
+  for (unsigned int i = 0; i < m_actCategories.size(); ++i) {
     m_actGrpCategories->removeAction(m_actCategories[i]);
+  }
 
   m_actCategories.clear();
   m_mnuCategory->clear();
@@ -312,7 +318,9 @@ void QtGameWindow::categoryChanged(QAction* act) {
   int i = -1;
 
   for (i = 0; i < static_cast<int>(m_actCategories.size()); ++i) {
-    if (m_actCategories[i] == act) break;
+    if (m_actCategories[i] == act) {
+      break;
+    }
   }
 
   assert(i != -1);
@@ -341,7 +349,9 @@ void QtGameWindow::letterClicked(int id) {
   m_wgtGuess->update(state.guess);
   m_wgtGuess->repaint();
 
-  if (done) m_wgtLetters->disable();
+  if (done) {
+    m_wgtLetters->disable();
+  }
 }
 
 //===========================================
@@ -358,13 +368,15 @@ QtGameWindow::~QtGameWindow() {
   delete m_actQuit;
   delete m_actAbout;
 
-  for (auto i = m_actCategories.begin(); i != m_actCategories.end(); ++i)
+  for (auto i = m_actCategories.begin(); i != m_actCategories.end(); ++i) {
     delete *i;
+  }
 
   delete m_actGrpCategories;
 
-  for (auto i = m_actLanguages.begin(); i != m_actLanguages.end(); ++i)
+  for (auto i = m_actLanguages.begin(); i != m_actLanguages.end(); ++i) {
     delete *i;
+  }
 
   delete m_actGrpLanguages;
 }

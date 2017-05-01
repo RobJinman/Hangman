@@ -69,37 +69,54 @@ ucs4string_t utf8ToUcs4(const utf8string_t& utf) {
     uint8_t c = utf.data()[i];
 
     if (c >> 7 == 0b0) {
-      if (i > 0) ucs.push_back(val);
+      if (i > 0) {
+        ucs.push_back(val);
+      }
       val = c;
-      if (i + 1 == utf.length()) ucs.push_back(val);
+      if (i + 1 == utf.length()) {
+        ucs.push_back(val);
+      }
     }
     else if (c >> 6 == 0b10) {
       val = val << 6;
       val += c & 0b111111;
-      if (i + 1 == utf.length()) ucs.push_back(val);
+      if (i + 1 == utf.length()) {
+        ucs.push_back(val);
+      }
     }
     else if (c >> 5 == 0b110) {
-      if (i > 0) ucs.push_back(val);
+      if (i > 0) {
+        ucs.push_back(val);
+      }
       val = c & 0b11111;
     }
     else if (c >> 4 == 0b1110) {
-      if (i > 0) ucs.push_back(val);
+      if (i > 0) {
+        ucs.push_back(val);
+      }
       val = c & 0b1111;
     }
     else if (c >> 3 == 0b11110) {
-      if (i > 0) ucs.push_back(val);
+      if (i > 0) {
+        ucs.push_back(val);
+      }
       val = c & 0b111;
     }
     else if (c >> 2 == 0b111110) {
-      if (i > 0) ucs.push_back(val);
+      if (i > 0) {
+        ucs.push_back(val);
+      }
       val = c & 0b11;
     }
     else if (c >> 1 == 0b1111110) {
-      if (i > 0) ucs.push_back(val);
+      if (i > 0) {
+        ucs.push_back(val);
+      }
       val = c & 0b1;
     }
-    else
+    else {
       assert(false);
+    }
   }
 
   return ucs;
