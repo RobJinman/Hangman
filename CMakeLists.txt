@@ -25,7 +25,7 @@ file(COPY "VERSION" DESTINATION "${CMAKE_BINARY_DIR}/data")
 
 install(TARGETS hangman DESTINATION "share/hangman")
 install(DIRECTORY "data" DESTINATION "share/hangman")
-install(FILES "hangman.sh" DESTINATION "share/hangman" RENAME "hangman")
+install(FILES "hangman.sh" DESTINATION "usr/games" RENAME "hangman")
 install(FILES "VERSION" DESTINATION "share/hangman/data")
 install(FILES "hangman.desktop" DESTINATION "share/applications")
 install(FILES "hangman.svg" DESTINATION "share/pixmaps")
