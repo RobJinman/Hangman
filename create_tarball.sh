@@ -36,12 +36,16 @@ if [ "$commit" = "HEAD" ]; then
 fi
 
 if [ "$snapshot" = true ]; then
-  suffix="-SNAPSHOT"
+  timestamp=$(date -u +%Y%m%d%H%M%S)
+  minor="${version: -1}"
+  minorPlus1=$((minor + 1))
+  suffix="+${minorPlus1}SNAPSHOT$timestamp"
 else
   suffix=""
 fi
 
 printf "Building archive... "
+mkdir -p "$destination"
 
 tmpArchiveName="tmp.tar.gz"
 git archive --format=tar.gz -o "$destination/$tmpArchiveName" "$commit"
