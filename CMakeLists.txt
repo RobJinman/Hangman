@@ -23,7 +23,7 @@ target_link_libraries(hangman Qt5::Gui)
 file(COPY "data" DESTINATION "${CMAKE_BINARY_DIR}")
 file(COPY "VERSION" DESTINATION "${CMAKE_BINARY_DIR}/data")
 
-install(TARGETS hangman DESTINATION "share/hangman")
+install(TARGETS hangman DESTINATION "usr/bin/hangman")
 install(DIRECTORY "data" DESTINATION "share/hangman")
 install(FILES "hangman.sh" DESTINATION "usr/games" RENAME "hangman")
 install(FILES "VERSION" DESTINATION "share/hangman/data")

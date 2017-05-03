@@ -1,38 +1,35 @@
 #!/bin/bash
 
-if [ "$(uname)" == 'Darwin' ]; then
-  OS='Mac'
-elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
-  OS='Linux'
+if [ "$(uname)" == "Darwin" ]; then
+  systemName="Mac"
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+  systemName="Linux"
 else
-  echo "Your platform ($(uname -a)) is not supported."
+  printf "Your platform ($(uname -a)) is not supported.\n"
   exit 1
 fi
 
-if [ $OS == 'Mac' ]; then
-  HANGMAN_APP_NAME="Hangman.app"
+if [ "$systemName" == "Mac" ]; then
+  hangmanAppName="Hangman.app"
 
-  if [ -z "${HANGMAN_PATH}" ]; then
-    # If HANGMAN_PATH isnt set, check /Applications and then ~/Applications for Hangman.app
-    if [ -x "/Applications/$HANGMAN_APP_NAME" ]; then
-      HANGMAN_PATH="/Applications"
-    elif [ -x "$HOME/Applications/$HANGMAN_APP_NAME" ]; then
-      HANGMAN_PATH="$HOME/Applications"
-    else
-      # Exit if Hangman can't be found
-      if [ ! -x "$HANGMAN_PATH/$HANGMAN_APP_NAME" ]; then
-        echo "Cannot locate Hangman.app, it is usually located in /Applications. Set the" \
-          "HANGMAN_PATH environment variable to the directory containing Hangman.app."
-        exit 1
-      fi
+  # Check /Applications and then ~/Applications for Hangman.app
+  if [ -x "/Applications/$hangmanAppName" ]; then
+    hangmanDir="/Applications"
+  elif [ -x "$HOME/Applications/$hangmanAppName" ]; then
+    hangmanDir="$HOME/Applications"
+  else
+    # Exit if Hangman can't be found
+    if [ ! -x "$hangmanDir/$hangmanAppName" ]; then
+      printf "Cannot locate Hangman.app, it is usually located in /Applications.\n"
+      exit 1
     fi
   fi
 
-  open -a "$HANGMAN_PATH/$HANGMAN_APP_NAME" -n --args "$@"
-elif [ $OS == 'Linux' ]; then
-  SCRIPT=$(readlink -f "$0")
-  USR_DIRECTORY=$(readlink -f $(dirname $SCRIPT)/..)
-  HANGMAN_PATH="$USR_DIRECTORY/share/hangman/hangman"
+  open -a "$hangmanPath/$hangmanAppName" -n --args "$@"
+elif [ $systemName == "Linux" ]; then
+  # This script should be at usr/games
+  script=$(readlink -f "$0")
+  usrDir=$(readlink -f "$(dirname $script)/..")
 
-  (nohup "$HANGMAN_PATH" "$@" > /dev/null 2>&1) &
+  (cd "$usrDir/share/hangman"; nohup "$usrDir/bin/hangman" "$@" > /dev/null 2>&1) &
 fi
