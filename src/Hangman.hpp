@@ -1,6 +1,6 @@
 // This file is part of Hangman.
 //
-// Copyright Rob Jinman 2013 <admin@robjinman.com>
+// Copyright Rob Jinman 2013 <jinmanr@gmail.com>
 //
 // Hangman is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
